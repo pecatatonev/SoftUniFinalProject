@@ -22,9 +22,16 @@ namespace SoftUniFinalProject.Infrastructure.Data
             //    .WithMany(sp => sp.TeamsSponsors)
             //    .OnDelete(DeleteBehavior.NoAction);
 
-            //modelBuilder.Entity<FootballGame>()
-            //    .HasOne(fg => fg.AwayTeam)
-            //    .With
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Event)
+                .WithMany(c => c.Comments)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FootballGame>().HasOne(fb => fb.AwayTeam)
+                 .WithOne().OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<FootballGame>().HasOne(fb => fb.HomeTeam)
+                 .WithOne().OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<EventParticipant>().HasKey(ep => new { ep.EventId, ep.UserId });
 
