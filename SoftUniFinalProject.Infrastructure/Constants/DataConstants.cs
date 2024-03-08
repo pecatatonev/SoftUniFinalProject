@@ -49,5 +49,11 @@ namespace SoftUniFinalProject.Infrastructure.Constants
             public const int LocationNameMaxLenght = 50; 
             public const int LocationNameMinLenght = 2; 
         }
+
+        public static class Comment 
+        {
+            public const int TextMaxLenght = 300;
+            public const int TextMinLenght = 1;
+        }
     }
 }
