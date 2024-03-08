@@ -29,7 +29,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         public DateTime StartOn { get; set; }
         [Required]
         [Comment("Organiser Identifier")]
-        public int OrganiserId { get; set; }
+        public string OrganiserId { get; set; }
         [ForeignKey(nameof(OrganiserId))]
         [Comment("Organiser of the event")]
         public IdentityUser Organiser { get; set; } = null!;

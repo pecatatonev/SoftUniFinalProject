@@ -23,7 +23,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Comment("Event to comment")]
         public Event Event { get; set; } = null!;
         [Comment("Creator of the comment Identifier")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [ForeignKey(nameof(UserId))]
         [Comment("Creator of the comment")]
         public IdentityUser User { get; set; } = null!;
