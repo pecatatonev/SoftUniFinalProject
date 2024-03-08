@@ -17,6 +17,13 @@ namespace SoftUniFinalProject.Infrastructure.Data
         {
             modelBuilder.Entity<TeamSponsor>().HasKey(ts => new { ts.SponsorId, ts.TeamId });
 
+            modelBuilder.Entity<EventParticipant>().HasKey(ep => new { ep.EventId, ep.UserId });
+
+            modelBuilder.Entity<EventParticipant>()
+                .HasOne(ep => ep.Event)
+                .WithMany(ep => ep.EventParticipants)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(modelBuilder);
         }
     }

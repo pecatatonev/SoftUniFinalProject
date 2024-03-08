@@ -9,11 +9,11 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         public int SponsorId { get; set; }
         [ForeignKey(nameof(SponsorId))]
         [Comment("Team Sponsor")]
-        public Sponsor Sponsor { get; set; } = null!;
+        public Sponsor Sponsor { get; set; } 
         [Comment("Team Identifier")]
         public int TeamId { get; set; }
         [ForeignKey(nameof(TeamId))]
         [Comment("Team")]
-        public Team Team { get; set; } = null!;
+        public Team Team { get; set; } 
     }
 }

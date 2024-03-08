@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Net;
 using static SoftUniFinalProject.Infrastructure.Constants.DataConstants.Event;
 
 namespace SoftUniFinalProject.Infrastructure.Data.Models
@@ -39,5 +40,6 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Comment("Football game to watch")]
         public FootballGame FootballGame { get; set; } = null!;
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
     }
 }
