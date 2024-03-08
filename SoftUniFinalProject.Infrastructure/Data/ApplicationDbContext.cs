@@ -37,5 +37,13 @@ namespace SoftUniFinalProject.Infrastructure.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventParticipant> EventsParticipants { get; set; }
+        public DbSet<FootballGame> FootballGames { get; set; }
+        public DbSet<Sponsor> Sponsors { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamSponsor> TeamsSponsors { get; set; }
     }
 }
