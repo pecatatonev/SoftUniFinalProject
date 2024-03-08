@@ -11,7 +11,7 @@ using SoftUniFinalProject.Infrastructure.Data;
 
 namespace SoftUniFinalProject.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(FootballEventDbContext))]
     [Migration("20240308132421_InitialMigration")]
     partial class InitialMigration
     {

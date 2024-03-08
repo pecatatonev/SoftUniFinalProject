@@ -10,7 +10,7 @@ using SoftUniFinalProject.Infrastructure.Data;
 
 namespace SoftUniFinalProject.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(FootballEventDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

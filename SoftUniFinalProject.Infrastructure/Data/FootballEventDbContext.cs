@@ -6,9 +6,9 @@ using System.Security.Principal;
 
 namespace SoftUniFinalProject.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class FootballEventDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public FootballEventDbContext(DbContextOptions<FootballEventDbContext> options)
             : base(options)
         {
         }
