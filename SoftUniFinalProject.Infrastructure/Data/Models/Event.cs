@@ -38,5 +38,6 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [ForeignKey(nameof(FootballGameId))]
         [Comment("Football game to watch")]
         public FootballGame FootballGame { get; set; } = null!;
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
