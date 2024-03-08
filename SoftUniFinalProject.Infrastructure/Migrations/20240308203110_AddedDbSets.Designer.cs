@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftUniFinalProject.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using SoftUniFinalProject.Infrastructure.Data;
 namespace SoftUniFinalProject.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240308203110_AddedDbSets")]
+    partial class AddedDbSets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,7 +260,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.Event", b =>
@@ -307,7 +309,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
                     b.HasIndex("OrganiserId");
 
-                    b.ToTable("Events", (string)null);
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.EventParticipant", b =>
@@ -322,7 +324,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EventsParticipants", (string)null);
+                    b.ToTable("EventsParticipants");
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.FootballGame", b =>
@@ -365,7 +367,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                     b.HasIndex("HomeTeamId")
                         .IsUnique();
 
-                    b.ToTable("FootballGames", (string)null);
+                    b.ToTable("FootballGames");
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.Sponsor", b =>
@@ -398,7 +400,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sponsors", (string)null);
+                    b.ToTable("Sponsors");
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.Team", b =>
@@ -449,7 +451,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.TeamSponsor", b =>
@@ -466,7 +468,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("TeamsSponsors", (string)null);
+                    b.ToTable("TeamsSponsors");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
