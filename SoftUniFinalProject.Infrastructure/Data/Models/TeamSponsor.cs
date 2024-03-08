@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftUniFinalProject.Infrastructure.Data.Models
 {
     public class TeamSponsor
     {
+        [Comment("Team Sponsor Identifier")]
         public int SponsorId { get; set; }
         [ForeignKey(nameof(SponsorId))]
+        [Comment("Team Sponsor")]
         public Sponsor Sponsor { get; set; } = null!;
-
+        [Comment("Team Identifier")]
         public int TeamId { get; set; }
         [ForeignKey(nameof(TeamId))]
+        [Comment("Team")]
         public Team Team { get; set; } = null!;
     }
 }
