@@ -37,5 +37,17 @@ namespace SoftUniFinalProject.Infrastructure.Constants
             public const int RefereeNameMaxLenght = 50;
             public const int RefereeNameMinLenght = 1;
         }
+
+        public static class Event
+        {
+            public const int NameMaxLenght = 50;
+            public const int NameMinLenght = 1;
+
+            public const int DescriptionMaxLenght = 100;
+            public const int DescriptionMinLenght = 1;
+
+            public const int LocationNameMaxLenght = 50; 
+            public const int LocationNameMinLenght = 2; 
+        }
     }
 }
