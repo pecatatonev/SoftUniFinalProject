@@ -10,7 +10,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Comment("Sponsor Identifier")]
         public int Id { get; set; }
         [Comment("Sponsor Name")]
-        [StringLength(NameMaxLenght)]
+        [MaxLength(NameMaxLenght)]
         [Required]
         public string Name { get; set; } = string.Empty;
         [Comment("Sponsor NetWorth")]
@@ -22,6 +22,6 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         public DateTime StartOn { get; set; }
         [Comment("Logo of the sponsor")]
         public string ImageUrl { get; set; } = string.Empty;
-
+        public ICollection<TeamSponsor> TeamsSponsors { get; set; } = new List<TeamSponsor>();
     }
 }

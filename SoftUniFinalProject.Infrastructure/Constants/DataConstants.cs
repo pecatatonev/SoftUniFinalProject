@@ -16,5 +16,20 @@ namespace SoftUniFinalProject.Infrastructure.Constants
             public const int NetWorthMax = 10;
             public const int NetWorthMin = 1;
         }
+
+        public static class Team 
+        {
+            public const int NameMaxLenght = 90;
+            public const int NameMinLenght = 2;
+
+            public const int ManagerNameMaxLenght = 60;
+            public const int ManagerNameMinLenght = 2;
+            
+            public const int StadiumMaxLenght = 90;
+            public const int StadiumMinLenght = 2;
+
+            public const int NicknameMaxLenght = 40;
+            public const int NicknameMinLenght = 2;
+        }
     }
 }
