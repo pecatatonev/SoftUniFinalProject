@@ -31,5 +31,11 @@ namespace SoftUniFinalProject.Infrastructure.Constants
             public const int NicknameMaxLenght = 40;
             public const int NicknameMinLenght = 2;
         }
+
+        public static class FootballGame 
+        {
+            public const int RefereeNameMaxLenght = 50;
+            public const int RefereeNameMinLenght = 1;
+        }
     }
 }
