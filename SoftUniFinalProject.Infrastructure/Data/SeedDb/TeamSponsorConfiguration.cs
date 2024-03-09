@@ -15,6 +15,9 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         public void Configure(EntityTypeBuilder<TeamSponsor> builder)
         {
             builder.HasKey(ts => new { ts.SponsorId, ts.TeamId });
+
+            builder.HasData(new TeamSponsor { SponsorId = 1, TeamId = 1 },
+                new TeamSponsor { SponsorId = 2, TeamId = 2 });
         }
 
         //Za dobavqne kum many to many table

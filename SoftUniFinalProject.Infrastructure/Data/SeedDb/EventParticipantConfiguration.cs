@@ -20,6 +20,8 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 .HasOne(ep => ep.Event)
                 .WithMany(ep => ep.EventParticipants)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasData(new EventParticipant { EventId = 1, UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e" });
         }
     }
 }
