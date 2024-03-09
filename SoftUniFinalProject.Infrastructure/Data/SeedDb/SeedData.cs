@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SoftUniFinalProject.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         public Sponsor NikeSponsor { get; set; }
         public Team ManchesterUnited { get; set; }
         public Team Liverpool { get; set; }
+        public FootballGame ManUvsLiv { get; set; }
+        public Event WatchEnglishDerby { get; set; }
+        public Comment CommentGuest { get; set; }
         private void SeedUsers() 
         {
             var hasher = new PasswordHasher<IdentityUser>();
@@ -87,5 +91,39 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
             };
         }
 
+        private void SeedFootballGame() 
+        {
+            ManUvsLiv = new FootballGame()
+            {
+                RefereeName = "Mike Dean",
+                StartGame = DateTime.ParseExact("14.04.2024 18:00:00", "dd/MM/yyyy hh:mm:ss"
+                , System.Globalization.CultureInfo.InvariantCulture),
+                HomeTeamId = 1,
+                AwayTeamId = 2
+            };
+        }
+        private void SeedEvent() 
+        {
+            WatchEnglishDerby = new Event()
+            {
+                Name = "Biggest English Derby",
+                Description = "This is oldest and biggest derby in England Premier League",
+                Location = "The Corner Cafe",
+                StartOn = DateTime.ParseExact("14.04.2024 17:00:00", "dd/MM/yyyy hh:mm:ss"
+                , System.Globalization.CultureInfo.InvariantCulture),
+                FootballGameId = 1,
+                OrganiserId = "dea12856-c198-4129-b3f3-b893d8395082",
+            };
+        }
+        private void SeedComment() 
+        {
+            CommentGuest = new Comment()
+            {
+                Text = "I can't wait for that derby",
+                PublicationTime = DateTime.Now.AddHours(3),
+                EventId = 1,
+                UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
+            };
+        }
     }
 }
