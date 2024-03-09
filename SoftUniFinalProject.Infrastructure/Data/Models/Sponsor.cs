@@ -21,6 +21,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Required]
         public DateTime StartOn { get; set; }
         [Comment("Logo of the sponsor")]
+        [Required]
         public string ImageUrl { get; set; } = string.Empty;
         public ICollection<TeamSponsor> TeamsSponsors { get; set; } = new List<TeamSponsor>();
     }
