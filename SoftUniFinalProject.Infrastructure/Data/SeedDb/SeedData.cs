@@ -14,6 +14,8 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         public IdentityUser GuestUser { get; set; }
         public Sponsor AddidasSponsor { get; set; }
         public Sponsor NikeSponsor { get; set; }
+        public Team ManchesterUnited { get; set; }
+        public Team Liverpool { get; set; }
         private void SeedUsers() 
         {
             var hasher = new PasswordHasher<IdentityUser>();
@@ -57,6 +59,31 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 NetWorthInBillion = 6,
                 StartOn = DateTime.Now.AddYears(-23),
                 ImageUrl = "https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Rewrite_Nike_Logo_Design_History_Evolution_0_1024x1024.jpg?v=1695304464"
+            };
+        }
+
+        private void SeedTeam() 
+        {
+            ManchesterUnited = new Team()
+            {
+                Name = "Manchester United F.C",
+                YearCreated = new DateTime(int.Parse("1887"), 1, 1),
+                ManagerName = "Erik ten Hag",
+                StadiumName = "Old Trafford",
+                Nickname = "Red Devils",
+                StadiumCapacity = 78000,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png",
+            };
+
+            Liverpool = new Team()
+            {
+                Name = "Liverpool F.C",
+                YearCreated = new DateTime(int.Parse("1897"), 1, 1),
+                ManagerName = "Jurgen Kloop",
+                StadiumName = "Anfield",
+                Nickname = "The Reds",
+                StadiumCapacity = 60730,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png",
             };
         }
 
