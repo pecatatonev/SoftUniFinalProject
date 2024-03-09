@@ -1,11 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SoftUniFinalProject.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
 {
@@ -20,6 +14,17 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         public FootballGame ManUvsLiv { get; set; }
         public Event WatchEnglishDerby { get; set; }
         public Comment CommentGuest { get; set; }
+
+        public SeedData() 
+        {
+            SeedUsers();
+            SeedSponsor();
+            SeedTeam();
+            SeedFootballGame();
+            SeedEvent();
+            SeedComment();
+        }
+
         private void SeedUsers() 
         {
             var hasher = new PasswordHasher<IdentityUser>();
@@ -47,7 +52,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
             GuestUser.PasswordHash = hasher.HashPassword(GuestUser, "guest987");
         }
 
-        private void SeeedSponsor() 
+        private void SeedSponsor() 
         {
             AddidasSponsor = new Sponsor()
             {
