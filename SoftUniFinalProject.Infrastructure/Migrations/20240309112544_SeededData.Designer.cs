@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftUniFinalProject.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using SoftUniFinalProject.Infrastructure.Data;
 namespace SoftUniFinalProject.Infrastructure.Migrations
 {
     [DbContext(typeof(FootballEventDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240309112544_SeededData")]
+    partial class SeededData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,15 +145,15 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         {
                             Id = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1795d1f6-3cc1-4bfb-a390-73015e586dc8",
+                            ConcurrencyStamp = "ba2aa06d-153a-45e8-9a2b-8ee962dff092",
                             Email = "guest@football.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@football.com",
                             NormalizedUserName = "guest@football.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMad9kjIQg0emt5G9ZGSzTIuC8Xp34/QMRTSsCyj4uenpacUg5+1376hHVqPr1TZdw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKC6T2Su8CWt2N4+KHgm/MlW9qhuoO+T1BW6Oj7RW+Xw8o1KYnefIIP21K4fnz7/EA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bd696a20-2003-4215-8790-91767193c45d",
+                            SecurityStamp = "cf821a13-c3c7-426e-926e-93354de44d74",
                             TwoFactorEnabled = false,
                             UserName = "guest@football.com"
                         },
@@ -159,15 +161,15 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "24a4d207-a266-485f-ae69-c9067770773e",
+                            ConcurrencyStamp = "6ef879a0-1250-4873-9724-0f6de3b1bc7a",
                             Email = "host@football.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "host@football.com",
                             NormalizedUserName = "host@football.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIKOw8RDl5QBBSlHSiycTugjFsIOvpPXEcXcLj7O4Y7VUSR56rH/TmXRzlKbf6FTlg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOLHeM8fs6Uc9xLkWHeGyJZlvQ30Acxc1vJLQlQ9q9W+9n8WzyY1NfgghMjK8bTByg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "44c281bc-60fe-47ff-aa32-8a43472ce66b",
+                            SecurityStamp = "1b2d3a4a-b74a-4fd7-ba70-8ad9fab80dbc",
                             TwoFactorEnabled = false,
                             UserName = "host@football.com"
                         });
@@ -299,7 +301,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         {
                             Id = 1,
                             EventId = 1,
-                            PublicationTime = new DateTime(2024, 3, 9, 16, 59, 15, 128, DateTimeKind.Local).AddTicks(264),
+                            PublicationTime = new DateTime(2024, 3, 9, 16, 25, 44, 806, DateTimeKind.Local).AddTicks(138),
                             Text = "I can't wait for that derby",
                             UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
                         });
@@ -379,13 +381,6 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("EventsParticipants");
-
-                    b.HasData(
-                        new
-                        {
-                            EventId = 1,
-                            UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
-                        });
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.FootballGame", b =>
@@ -481,7 +476,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                             ImageUrl = "https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Rewrite_Nike_Logo_Design_History_Evolution_0_1024x1024.jpg?v=1695304464",
                             Name = "Nike",
                             NetWorthInBillion = 6,
-                            StartOn = new DateTime(2001, 3, 9, 13, 59, 15, 121, DateTimeKind.Local).AddTicks(3066)
+                            StartOn = new DateTime(2001, 3, 9, 13, 25, 44, 799, DateTimeKind.Local).AddTicks(1573)
                         },
                         new
                         {
@@ -489,7 +484,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                             ImageUrl = "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg",
                             Name = "Addidas",
                             NetWorthInBillion = 5,
-                            StartOn = new DateTime(2004, 3, 9, 13, 59, 15, 121, DateTimeKind.Local).AddTicks(3052)
+                            StartOn = new DateTime(2004, 3, 9, 13, 25, 44, 799, DateTimeKind.Local).AddTicks(1568)
                         });
                 });
 
@@ -583,18 +578,6 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("TeamsSponsors");
-
-                    b.HasData(
-                        new
-                        {
-                            SponsorId = 1,
-                            TeamId = 1
-                        },
-                        new
-                        {
-                            SponsorId = 2,
-                            TeamId = 2
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

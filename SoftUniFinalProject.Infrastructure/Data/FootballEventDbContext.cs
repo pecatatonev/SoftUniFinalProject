@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SoftUniFinalProject.Infrastructure.Data.Models;
+using SoftUniFinalProject.Infrastructure.Data.SeedDb;
 using System.Reflection.Emit;
 using System.Security.Principal;
 
@@ -16,40 +17,16 @@ namespace SoftUniFinalProject.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TeamSponsor>().HasKey(ts => new { ts.SponsorId, ts.TeamId });
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new SponsorConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamConfiguration());
+            modelBuilder.ApplyConfiguration(new FootballGameConfiguration());
+            modelBuilder.ApplyConfiguration(new EventConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamSponsorConfiguration());
+            modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
 
-            modelBuilder.Entity<Comment>()
-                .HasOne(c => c.Event)
-                .WithMany(c => c.Comments)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<FootballGame>().HasOne(fb => fb.AwayTeam)
-                 .WithOne().OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<FootballGame>().HasOne(fb => fb.HomeTeam)
-                 .WithOne().OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<EventParticipant>().HasKey(ep => new { ep.EventId, ep.UserId });
-
-            modelBuilder.Entity<EventParticipant>()
-                .HasOne(ep => ep.Event)
-                .WithMany(ep => ep.EventParticipants)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            //Za dobavqne kum many to many table
-        //    internal class ConfigureAuthorBook : IEntityTypeConfiguration<Book>
-        //{
-        //    public void Configure(EntityTypeBuilder<Book> entity)
-        //    {
-        //        entity
-        //            .HasMany(b => b.Authors)
-        //            .WithMany(a => a.Books)
-        //            .UsingEntity(
-        //                 ba => ba.HasData(
-        //                     new { BooksBookId = 1, AuthorsAuthorId = 1 },
-        //                     new { BooksBookId = 1, AuthorsAuthorId = 2 }));
-        //    }
-        //}
+            
             base.OnModelCreating(modelBuilder);
         }
 
