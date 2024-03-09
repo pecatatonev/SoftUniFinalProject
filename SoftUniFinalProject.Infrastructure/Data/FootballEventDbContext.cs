@@ -26,20 +26,7 @@ namespace SoftUniFinalProject.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new TeamSponsorConfiguration());
             modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
 
-            //Za dobavqne kum many to many table
-        //    internal class ConfigureAuthorBook : IEntityTypeConfiguration<Book>
-        //{
-        //    public void Configure(EntityTypeBuilder<Book> entity)
-        //    {
-        //        entity
-        //            .HasMany(b => b.Authors)
-        //            .WithMany(a => a.Books)
-        //            .UsingEntity(
-        //                 ba => ba.HasData(
-        //                     new { BooksBookId = 1, AuthorsAuthorId = 1 },
-        //                     new { BooksBookId = 1, AuthorsAuthorId = 2 }));
-        //    }
-        //}
+            
             base.OnModelCreating(modelBuilder);
         }
 
