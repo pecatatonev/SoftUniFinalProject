@@ -17,16 +17,14 @@ namespace SoftUniFinalProject.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
-
-           
-
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new SponsorConfiguration());
             modelBuilder.ApplyConfiguration(new TeamConfiguration());
             modelBuilder.ApplyConfiguration(new FootballGameConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamSponsorConfiguration());
+            modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
 
             //Za dobavqne kum many to many table
         //    internal class ConfigureAuthorBook : IEntityTypeConfiguration<Book>

@@ -16,5 +16,20 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         {
             builder.HasKey(ts => new { ts.SponsorId, ts.TeamId });
         }
+
+        //Za dobavqne kum many to many table
+        //    internal class ConfigureAuthorBook : IEntityTypeConfiguration<Book>
+        //{
+        //    public void Configure(EntityTypeBuilder<Book> entity)
+        //    {
+        //        entity
+        //            .HasMany(b => b.Authors)
+        //            .WithMany(a => a.Books)
+        //            .UsingEntity(
+        //                 ba => ba.HasData(
+        //                     new { BooksBookId = 1, AuthorsAuthorId = 1 },
+        //                     new { BooksBookId = 1, AuthorsAuthorId = 2 }));
+        //    }
+        //}
     }
 }
