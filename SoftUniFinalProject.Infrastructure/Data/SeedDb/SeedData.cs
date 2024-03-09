@@ -56,6 +56,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         {
             AddidasSponsor = new Sponsor()
             {
+                Id = 1,
                 Name = "Addidas",
                 NetWorthInBillion = 5,
                 StartOn = DateTime.Now.AddYears(-20),
@@ -64,6 +65,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
 
             NikeSponsor = new Sponsor()
             {
+                Id=2,
                 Name = "Nike",
                 NetWorthInBillion = 6,
                 StartOn = DateTime.Now.AddYears(-23),
@@ -75,6 +77,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         {
             ManchesterUnited = new Team()
             {
+                Id = 1,
                 Name = "Manchester United F.C",
                 YearCreated = new DateTime(int.Parse("1887"), 1, 1),
                 ManagerName = "Erik ten Hag",
@@ -86,6 +89,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
 
             Liverpool = new Team()
             {
+                Id = 2,
                 Name = "Liverpool F.C",
                 YearCreated = new DateTime(int.Parse("1897"), 1, 1),
                 ManagerName = "Jurgen Kloop",
@@ -100,9 +104,9 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         {
             ManUvsLiv = new FootballGame()
             {
+                Id = 1,
                 RefereeName = "Mike Dean",
-                StartGame = DateTime.ParseExact("14.04.2024 18:00:00", "dd/MM/yyyy hh:mm:ss"
-                , System.Globalization.CultureInfo.InvariantCulture),
+                StartGame =new DateTime(2024, 04, 14, 18, 0, 0), //"14.04.2024 18:00:00"
                 HomeTeamId = 1,
                 AwayTeamId = 2
             };
@@ -111,11 +115,11 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         {
             WatchEnglishDerby = new Event()
             {
+                Id = 1,
                 Name = "Biggest English Derby",
                 Description = "This is oldest and biggest derby in England Premier League",
                 Location = "The Corner Cafe",
-                StartOn = DateTime.ParseExact("14.04.2024 17:00:00", "dd/MM/yyyy hh:mm:ss"
-                , System.Globalization.CultureInfo.InvariantCulture),
+                StartOn = new DateTime(2024, 04, 14, 17, 0, 0), //"14.04.2024 17:00:00"
                 FootballGameId = 1,
                 OrganiserId = "dea12856-c198-4129-b3f3-b893d8395082",
             };
@@ -124,6 +128,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
         {
             CommentGuest = new Comment()
             {
+                Id = 1,
                 Text = "I can't wait for that derby",
                 PublicationTime = DateTime.Now.AddHours(3),
                 EventId = 1,
