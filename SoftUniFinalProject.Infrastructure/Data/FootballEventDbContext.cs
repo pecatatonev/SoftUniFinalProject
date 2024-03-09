@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SoftUniFinalProject.Infrastructure.Data.Models;
+using SoftUniFinalProject.Infrastructure.Data.SeedDb;
 using System.Reflection.Emit;
 using System.Security.Principal;
 
@@ -16,14 +17,16 @@ namespace SoftUniFinalProject.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TeamSponsor>().HasKey(ts => new { ts.SponsorId, ts.TeamId });
+            
 
-            modelBuilder.Entity<EventParticipant>().HasKey(ep => new { ep.EventId, ep.UserId });
+           
 
-            modelBuilder.Entity<EventParticipant>()
-                .HasOne(ep => ep.Event)
-                .WithMany(ep => ep.EventParticipants)
-                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new SponsorConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamConfiguration());
+            modelBuilder.ApplyConfiguration(new FootballGameConfiguration());
+            modelBuilder.ApplyConfiguration(new EventConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
 
             //Za dobavqne kum many to many table
         //    internal class ConfigureAuthorBook : IEntityTypeConfiguration<Book>
