@@ -11,7 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Models\Home\" />
+    <Folder Include="Models\Event\" />
+    <Folder Include="Models\Comment\" />
+    <Folder Include="Models\Attendance\" />
+    <Folder Include="Models\Team\" />
   </ItemGroup>
 
 </Project>
