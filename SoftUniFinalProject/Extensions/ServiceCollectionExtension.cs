@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Team;
-using SoftUniFinalProject.Core.Services.Team;
+using SoftUniFinalProject.Core.Services.TeamService;
 using SoftUniFinalProject.Infrastructure.Data;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 
