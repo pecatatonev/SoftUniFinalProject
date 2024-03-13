@@ -8,13 +8,16 @@ namespace SoftUniFinalProject.Infrastructure.Constants
 {
     public static class DataConstants
     {
+        public const string DateTimeFormat = "dd.MM.yyyy";
         public static class Sponsor 
         {
             public const int NameMaxLenght = 150;
             public const int NameMinLenght = 3;
+            public const string NameLenght = "The {0} field must be between {2} and {1} characters long.";
 
             public const int NetWorthMax = 10;
             public const int NetWorthMin = 1;
+            public const string NetWorthRange = "The {0} field must be between {2} and {1} characters long.";
         }
 
         public static class Team 
