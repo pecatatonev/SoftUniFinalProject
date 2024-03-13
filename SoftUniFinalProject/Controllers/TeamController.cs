@@ -1,12 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoftUniFinalProject.Core.Contracts.Team;
+using System.Transactions;
 
 namespace SoftUniFinalProject.Controllers
 {
     public class TeamController : Controller
     {
-        public IActionResult All()
+        private readonly ITeamService teamService;
+        private readonly ISponsorService sponsorService;
+
+        public TeamController(ITeamService _teamService, ISponsorService _sponsorService)
         {
-            return View();
+            teamService = _teamService;
+            sponsorService = _sponsorService;
+        }
+        public async Task<IActionResult> All()
+        {
+            var model = await teamService.AllTeams();
+
+            return View(model);
         }
 
         public IActionResult Details()
@@ -14,9 +26,11 @@ namespace SoftUniFinalProject.Controllers
             return View();
         }
 
-        public IActionResult Sponsors()
+        public async Task<IActionResult> Sponsors(int teamId)
         {
-            return View();
+            var model = await sponsorService.SponsorsByTeam(teamId);
+
+            return View(model);
         }
 
         public IActionResult Create()

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftUniFinalProject.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using SoftUniFinalProject.Infrastructure.Data;
 namespace SoftUniFinalProject.Infrastructure.Migrations
 {
     [DbContext(typeof(FootballEventDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240313190900_NicknameNullable")]
+    partial class NicknameNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

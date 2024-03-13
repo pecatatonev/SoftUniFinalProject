@@ -4,11 +4,6 @@ using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftUniFinalProject.Core.Services.TeamService
 {
@@ -21,8 +16,9 @@ namespace SoftUniFinalProject.Core.Services.TeamService
             repository = _repository;
         }
 
-        public async Task<IEnumerable<SponsorServiceViewModel>> SponsorsAll()
+        public async Task<IEnumerable<SponsorServiceViewModel>> SponsorsByTeam(int teamId)
         {
+            //I have to get sponsord by team id
             return await repository.AllReadOnly<Sponsor>()
                 .Select(s => new SponsorServiceViewModel()
                 {

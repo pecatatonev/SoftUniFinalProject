@@ -23,4 +23,10 @@
     <ProjectReference Include="..\SoftUniFinalProject.Core\SoftUniFinalProject.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Event\" />
+    <Folder Include="Views\Attendance\" />
+    <Folder Include="Views\Comment\" />
+  </ItemGroup>
+
 </Project>
