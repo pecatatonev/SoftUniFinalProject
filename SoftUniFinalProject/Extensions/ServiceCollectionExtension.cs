@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Services.Team;
 using SoftUniFinalProject.Infrastructure.Data;
+using SoftUniFinalProject.Infrastructure.Data.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -8,6 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection service) 
         {
+            service.AddScoped<ISponsorService, SponsorService>();
+
             return service;
         }
 
@@ -16,6 +21,8 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<FootballEventDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepository, Repository>();
 
            services.AddDatabaseDeveloperPageExceptionFilter();
             return services;
