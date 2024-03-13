@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SoftUniFinalProject.Core.Models.Team.TeamsAllViewModel>
+@{
+    ViewData["Title"] = "All Teams";
+    var teams = Model.ToList();
+}
+
+@if (!teams.Any())
+{
+     <div class="mt-4 p-5 bg-light">
+         <h1 class="display-4">Welcome to the best site for Events.</h1>
+         <p class="lead"> Here you can view all our teams. </p> 
+         <hr class="my-4">
+         <p class="lead">
+             @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="Team" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Team</a>
+            }
+         </p>
+     </div>
+} 
+<div class="card-group">
+    @foreach (var team in teams)
+    {
+        <div class="card">
+            <img class="card-img-fluid" src="@team.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@team.Name</h5>
+                <p class="card-text">@team.ManagerName</p>
+                <p class="card-text"><small class="text-muted">@team.Nickname</small></p>
+            </div>
+        </div>
+        <a asp-controller="Team" asp-action="Sponsors" class="btn btn-primary btn-lg" role="button">View Sponsors</a>
+    }
+</div>
