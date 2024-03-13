@@ -4,11 +4,6 @@ using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftUniFinalProject.Core.Services.TeamService
 {
