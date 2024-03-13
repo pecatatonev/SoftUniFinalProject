@@ -16,8 +16,9 @@ namespace SoftUniFinalProject.Core.Services.TeamService
             repository = _repository;
         }
 
-        public async Task<IEnumerable<SponsorServiceViewModel>> SponsorsAll()
+        public async Task<IEnumerable<SponsorServiceViewModel>> SponsorsByTeam(int teamId)
         {
+            //I have to get sponsord by team id
             return await repository.AllReadOnly<Sponsor>()
                 .Select(s => new SponsorServiceViewModel()
                 {
