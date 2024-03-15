@@ -1,0 +1,18 @@
+﻿@model SoftUniFinalProject.Core.Models.Team.TeamsAllViewModel
+@{
+    ViewData["Title"] = "Team Details";
+}
+
+<div class="card-group">
+        <div class="card">
+            <img class="card-img-fluid" src="@Model.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.ManagerName</p>
+            <p class="card-text"><small class="text-muted">@Model.Nickname</small></p>
+            <p class="card-text"><small class="text-muted">@Model.StadiumCapacity</small></p>
+            <p class="card-text"><small class="text-muted">@Model.StadiumName</small></p>
+            <p class="card-text"><small class="text-muted">@Model.YearCreated</small></p>
+            </div>
+        </div>
+</div>

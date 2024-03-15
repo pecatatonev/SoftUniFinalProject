@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Team;
+using System.Net.WebSockets;
 using System.Transactions;
 
 namespace SoftUniFinalProject.Controllers
@@ -21,9 +22,11 @@ namespace SoftUniFinalProject.Controllers
             return View(model);
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> Details(int Id)
         {
-            return View();
+            var model = await teamService.GetTeamDetails(Id);
+
+            return View(model);
         }
 
         public async Task<IActionResult> Sponsors(int Id)
