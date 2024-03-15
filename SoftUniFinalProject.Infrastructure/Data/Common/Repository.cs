@@ -184,5 +184,13 @@ namespace SoftUniFinalProject.Infrastructure.Data.Common
             var entities = All<T>(deleteWhereClause);
             DeleteRange(entities);
         }
+
+        /// <summary>
+        /// Determine if entity already exist
+        /// </summary>
+        public async Task<bool> AlreadyExistAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return await DbSet<T>().AnyAsync(predicate);
+        }
     }
 }
