@@ -10,6 +10,7 @@ namespace SoftUniFinalProject.Infrastructure.Constants
     {
         public const string DateTimeFormat = "dd.MM.yyyy";
         public const string LenghtMessage = "The {0} field must be between {2} and {1} characters long.";
+        public const string LenghtIntegerMessage = "The {0} field must be between {1} and {2}.";
         public const string RequiredMessage = "The {0} field is required.";
         public static class Sponsor 
         {
@@ -34,11 +35,14 @@ namespace SoftUniFinalProject.Infrastructure.Constants
             public const int StadiumMaxLenght = 90;
             public const int StadiumMinLenght = 2;
 
+            public const int StadiumCapacityMax = 200000;
+            public const int StadiumCapacityMin = 1000;
+
             public const int NicknameMaxLenght = 40;
             public const int NicknameMinLenght = 2;
 
             public const int YearCreatedMax = 2024;
-            public const int YearCreatedMin = 1900;
+            public const int YearCreatedMin = 1800;
         }
 
         public static class FootballGame 

@@ -28,6 +28,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Comment("Team Nickname")]
         [MaxLength(NicknameMaxLenght)]
         public string? Nickname { get; set; }
+        [Required]
         [Comment("Stadium Capacity")]
         public int StadiumCapacity { get; set; }
         [Required]

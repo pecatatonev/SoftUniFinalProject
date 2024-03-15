@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Models.Team;
+using System.Net.WebSockets;
 using System.Transactions;
 
 namespace SoftUniFinalProject.Controllers
@@ -16,26 +18,55 @@ namespace SoftUniFinalProject.Controllers
         }
         public async Task<IActionResult> All()
         {
-            var model = await teamService.AllTeams();
+            var model = await teamService.AllTeamsAsync();
 
             return View(model);
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> Details(int Id)
         {
-            return View();
-        }
-
-        public async Task<IActionResult> Sponsors(int teamId)
-        {
-            var model = await sponsorService.SponsorsByTeam(teamId);
+            var model = await teamService.GetTeamDetailsAsync(Id);
 
             return View(model);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Sponsors(int Id)
         {
-            return View();
+            var model = await sponsorService.SponsorsByTeamAsync(Id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            //Only Admin can create team later check
+            var model = new AddTeamViewModel()
+            {
+                Sponsors = await sponsorService.AllSponsorsAsync(),
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(AddTeamViewModel model) 
+        {
+            if ((await sponsorService.SponsorExistAsync(model.SponsorId)) == false)
+            {
+                ModelState.AddModelError(nameof(model.SponsorId), "Sponsor don't exist");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Sponsors = await sponsorService.AllSponsorsAsync();
+
+                return View(model);
+            }
+
+            int teamId = await teamService.CreateAsync(model);
+
+            return RedirectToAction(nameof(Details), new { id = teamId});
         }
     }
 }
