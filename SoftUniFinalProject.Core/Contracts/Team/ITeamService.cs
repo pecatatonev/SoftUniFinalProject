@@ -4,8 +4,8 @@ namespace SoftUniFinalProject.Core.Contracts.Team
 {
     public interface ITeamService
     {
-        Task<IEnumerable<TeamsAllViewModel>> AllTeams();
+        Task<IEnumerable<TeamsAllViewModel>> AllTeamsAsync();
 
-        Task<TeamsAllViewModel> GetTeamDetails(int teamId);
+        Task<TeamsAllViewModel> GetTeamDetailsAsync(int teamId);
     }
 }

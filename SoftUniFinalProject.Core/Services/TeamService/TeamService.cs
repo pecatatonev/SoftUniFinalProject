@@ -15,7 +15,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
         {
             repository = _repository;
         }
-        public async Task<IEnumerable<TeamsAllViewModel>> AllTeams()
+        public async Task<IEnumerable<TeamsAllViewModel>> AllTeamsAsync()
         {
             //Nickname null option check later
            return await repository.AllReadOnly<Team>()
@@ -33,7 +33,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                 .ToListAsync();
         }
 
-        public async Task<TeamsAllViewModel> GetTeamDetails(int teamId)
+        public async Task<TeamsAllViewModel> GetTeamDetailsAsync(int teamId)
         {
             return await repository.AllReadOnly<Team>()
                 .Where(t => t.Id == teamId)

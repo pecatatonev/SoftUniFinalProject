@@ -17,21 +17,21 @@ namespace SoftUniFinalProject.Controllers
         }
         public async Task<IActionResult> All()
         {
-            var model = await teamService.AllTeams();
+            var model = await teamService.AllTeamsAsync();
 
             return View(model);
         }
 
         public async Task<IActionResult> Details(int Id)
         {
-            var model = await teamService.GetTeamDetails(Id);
+            var model = await teamService.GetTeamDetailsAsync(Id);
 
             return View(model);
         }
 
         public async Task<IActionResult> Sponsors(int Id)
         {
-            var model = await sponsorService.SponsorsByTeam(Id);
+            var model = await sponsorService.SponsorsByTeamAsync(Id);
 
             return View(model);
         }
