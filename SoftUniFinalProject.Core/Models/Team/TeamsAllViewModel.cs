@@ -14,7 +14,7 @@ namespace SoftUniFinalProject.Core.Models.Team
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string YearCreated { get; set; } = string.Empty;
+        public int YearCreated { get; set; }
         public string ManagerName { get; set; } = string.Empty;
         public string StadiumName { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;

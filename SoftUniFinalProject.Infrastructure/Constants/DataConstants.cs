@@ -18,6 +18,9 @@ namespace SoftUniFinalProject.Infrastructure.Constants
 
             public const int NetWorthMax = 10;
             public const int NetWorthMin = 1;
+
+            public const int YearCreatedMax = 2024;
+            public const int YearCreatedMin = 1900;
         }
 
         public static class Team 
@@ -33,6 +36,9 @@ namespace SoftUniFinalProject.Infrastructure.Constants
 
             public const int NicknameMaxLenght = 40;
             public const int NicknameMinLenght = 2;
+
+            public const int YearCreatedMax = 2024;
+            public const int YearCreatedMin = 1900;
         }
 
         public static class FootballGame 

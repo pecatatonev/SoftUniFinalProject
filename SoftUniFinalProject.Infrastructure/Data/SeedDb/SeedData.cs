@@ -59,7 +59,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 Id = 1,
                 Name = "Addidas",
                 NetWorthInBillion = 5,
-                StartOn = DateTime.Now.AddYears(-20),
+                YearCreation = 1949,
                 ImageUrl = "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg"
             };
 
@@ -68,7 +68,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 Id=2,
                 Name = "Nike",
                 NetWorthInBillion = 6,
-                StartOn = DateTime.Now.AddYears(-23),
+                YearCreation = 1964,
                 ImageUrl = "https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Rewrite_Nike_Logo_Design_History_Evolution_0_1024x1024.jpg?v=1695304464"
             };
         }
@@ -79,7 +79,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 Name = "Manchester United F.C",
-                YearCreated = new DateTime(int.Parse("1887"), 1, 1),
+                YearOfCreation = 1887,
                 ManagerName = "Erik ten Hag",
                 StadiumName = "Old Trafford",
                 Nickname = "Red Devils",
@@ -91,7 +91,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
             {
                 Id = 2,
                 Name = "Liverpool F.C",
-                YearCreated = new DateTime(int.Parse("1897"), 1, 1),
+                YearOfCreation = 1897,
                 ManagerName = "Jurgen Kloop",
                 StadiumName = "Anfield",
                 Nickname = "The Reds",

@@ -23,7 +23,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     Id = t.Id,
                     Name = t.Name,
                     StadiumCapacity = t.StadiumCapacity,
-                    YearCreated = t.YearCreated.ToString(DataConstants.DateTimeFormat),
+                    YearCreated = t.YearOfCreation,
                     ImageUrl = t.ImageUrl,
                     StadiumName = t.Name,
                     Nickname = t.Nickname,

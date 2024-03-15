@@ -17,9 +17,10 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Range(NetWorthMin, NetWorthMax)]
         [Required]
         public int NetWorthInBillion { get; set; }
-        [Comment("Date of creation")]
         [Required]
-        public DateTime StartOn { get; set; }
+        [Comment("Creation year of the Sponsor")]
+        [Range(YearCreatedMin, YearCreatedMax)]
+        public int YearCreation { get; set; }
         [Comment("Logo of the sponsor")]
         [Required]
         public string ImageUrl { get; set; } = string.Empty;

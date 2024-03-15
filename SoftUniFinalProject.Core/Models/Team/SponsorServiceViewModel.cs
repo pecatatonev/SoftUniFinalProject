@@ -7,7 +7,7 @@ namespace SoftUniFinalProject.Core.Models.Team
     {
         public string Name { get; set; } = string.Empty;
         public int NetWorthInBillion { get; set; }
-        public string StartOn { get; set; } = string.Empty;
+        public int YearCreated { get; set; }
         public string ImageUrl { get; set; } = string.Empty;
     }
 }

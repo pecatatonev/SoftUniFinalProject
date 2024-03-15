@@ -25,7 +25,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     Name = s.Name,
                     ImageUrl = s.ImageUrl,
                     NetWorthInBillion = s.NetWorthInBillion,
-                    StartOn = s.StartOn.ToString(DataConstants.DateTimeFormat),
+                    YearCreated = s.YearCreation
                 }).ToListAsync();
         }
     }

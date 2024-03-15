@@ -14,8 +14,9 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Comment("Team Name")]
         public string Name { get; set; } = string.Empty;
         [Required]
-        [Comment("Year of creation")]
-        public DateTime YearCreated { get; set; }
+        [Comment("Creation year of the team")]
+        [Range(YearCreatedMin, YearCreatedMax)]
+        public int YearOfCreation { get; set; }
         [Required]
         [MaxLength(ManagerNameMaxLenght)]
         [Comment("Manager of the team")]
