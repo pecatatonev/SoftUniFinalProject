@@ -18,8 +18,8 @@ namespace SoftUniFinalProject.Core.Services.TeamService
 
         public async Task<IEnumerable<SponsorServiceViewModel>> SponsorsByTeam(int teamId)
         {
-            //I have to get sponsord by team id
             return await repository.AllReadOnly<Sponsor>()
+                .Where(s => s.TeamsSponsors.Any(ts => ts.TeamId == teamId))
                 .Select(s => new SponsorServiceViewModel()
                 {
                     Name = s.Name,

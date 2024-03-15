@@ -26,9 +26,9 @@ namespace SoftUniFinalProject.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Sponsors(int teamId)
+        public async Task<IActionResult> Sponsors(int Id)
         {
-            var model = await sponsorService.SponsorsByTeam(teamId);
+            var model = await sponsorService.SponsorsByTeam(Id);
 
             return View(model);
         }

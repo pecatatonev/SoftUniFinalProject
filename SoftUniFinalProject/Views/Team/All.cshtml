@@ -28,7 +28,7 @@
                 <p class="card-text">@team.ManagerName</p>
                 <p class="card-text"><small class="text-muted">@team.Nickname</small></p>
             </div>
-            <a asp-controller="Team" asp-action="Sponsors" class="btn btn-primary btn-lg" role="button">View Sponsors</a>
+            <a asp-controller="Team" asp-action="Sponsors" asp-route-Id="@team.Id" class="btn btn-primary btn-lg" role="button">View Sponsors</a>
         </div>
         
     }
