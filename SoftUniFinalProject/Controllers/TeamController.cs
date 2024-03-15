@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Models.Team;
 using System.Net.WebSockets;
 using System.Transactions;
 
@@ -36,9 +37,36 @@ namespace SoftUniFinalProject.Controllers
             return View(model);
         }
 
-        public IActionResult Create()
+        [HttpGet]
+        public async Task<IActionResult> Create()
         {
-            return View();
+            //Only Admin can create team later check
+            var model = new AddTeamViewModel()
+            {
+                Sponsors = await sponsorService.AllSponsorsAsync(),
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(AddTeamViewModel model) 
+        {
+            if ((await sponsorService.SponsorExistAsync(model.SponsorId)) == false)
+            {
+                ModelState.AddModelError(nameof(model.SponsorId), "Sponsor don't exist");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Sponsors = await sponsorService.AllSponsorsAsync();
+
+                return View(model);
+            }
+
+            int teamId = await teamService.CreateAsync(model);
+
+            return RedirectToAction(nameof(Details), new { id = teamId});
         }
     }
 }

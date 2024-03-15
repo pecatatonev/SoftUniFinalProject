@@ -7,5 +7,7 @@ namespace SoftUniFinalProject.Core.Contracts.Team
         Task<IEnumerable<TeamsAllViewModel>> AllTeamsAsync();
 
         Task<TeamsAllViewModel> GetTeamDetailsAsync(int teamId);
+
+        Task<int> CreateAsync(AddTeamViewModel model);
     }
 }
