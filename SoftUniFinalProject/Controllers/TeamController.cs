@@ -54,7 +54,7 @@ namespace SoftUniFinalProject.Controllers
         {
             if ((await sponsorService.SponsorExistAsync(model.SponsorId)) == false)
             {
-                ModelState.AddModelError(nameof(model.SponsorId), "Sponsor don't exist");
+                ModelState.AddModelError(nameof(model.SponsorId), "Sponsor doesn't exist");
             }
 
             if (!ModelState.IsValid)

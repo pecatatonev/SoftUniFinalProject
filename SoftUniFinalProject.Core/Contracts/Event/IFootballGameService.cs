@@ -10,5 +10,9 @@ namespace SoftUniFinalProject.Core.Contracts.Event
     public interface IFootballGameService
     {
         Task<FootballGameViewModel> GetFootballDetailsAsync(int footballGameId);
+
+        Task<IEnumerable<FootballGameToAddViewModel>> GetAllFootballGamesAsync();
+
+        Task<bool> FootballGameExistAsync(int sponsorId);
     }
 }

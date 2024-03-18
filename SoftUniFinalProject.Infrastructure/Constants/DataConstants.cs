@@ -8,7 +8,7 @@ namespace SoftUniFinalProject.Infrastructure.Constants
 {
     public static class DataConstants
     {
-        public const string DateTimeFormat = "dddd, dd MMMM yyyy HH:mm";
+        public const string DateTimeFormat = "dd/MM/yyyy HH:mm";
         public const string LenghtMessage = "The {0} field must be between {2} and {1} characters long.";
         public const string LenghtIntegerMessage = "The {0} field must be between {1} and {2}.";
         public const string RequiredMessage = "The {0} field is required.";

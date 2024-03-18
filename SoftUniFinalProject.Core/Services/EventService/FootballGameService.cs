@@ -21,6 +21,25 @@ namespace SoftUniFinalProject.Core.Services.EventService
         {
             repository = _repository;
         }
+
+        public async Task<bool> FootballGameExistAsync(int footballGameId)
+        {
+            return await repository.AllReadOnly<FootballGame>()
+                .AnyAsync(fb => fb.Id == footballGameId);
+        }
+
+        public async Task<IEnumerable<FootballGameToAddViewModel>> GetAllFootballGamesAsync()
+        {
+            return await repository.AllReadOnly<FootballGame>()
+                .Select(x => new FootballGameToAddViewModel()
+                {
+                    Id = x.Id,
+                    AwayTeamName = x.AwayTeam.Name,
+                    HomeTeamName = x.HomeTeam.Name,
+                })
+                .ToListAsync();
+        }
+
         public async Task<FootballGameViewModel> GetFootballDetailsAsync(int footballGameId)
         {
             return await repository.AllReadOnly<FootballGame>()

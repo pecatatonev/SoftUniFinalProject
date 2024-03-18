@@ -13,6 +13,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection service) 
         {
+            service.AddLogging();
+
             service.AddScoped<ISponsorService, SponsorService>();
             service.AddScoped<ITeamService, TeamService>();
             service.AddScoped<IEventService, EventService>();
