@@ -108,7 +108,8 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 RefereeName = "Mike Dean",
                 StartGame =new DateTime(2024, 04, 14, 18, 0, 0), //"14.04.2024 18:00:00"
                 HomeTeamId = 1,
-                AwayTeamId = 2
+                AwayTeamId = 2,
+                PlayingFor = "Premier League Game"
             };
         }
         private void SeedEvent() 
