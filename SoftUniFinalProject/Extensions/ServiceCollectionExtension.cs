@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             service.AddScoped<ISponsorService, SponsorService>();
             service.AddScoped<ITeamService, TeamService>();
             service.AddScoped<IEventService, EventService>();
+            service.AddScoped<IFootballGameService, FootballGameService>();
 
             return service;
         }

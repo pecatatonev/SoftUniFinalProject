@@ -7,10 +7,12 @@ namespace SoftUniFinalProject.Controllers
     public class EventController : Controller
     {
         private readonly IEventService eventService;
+        private readonly IFootballGameService footballGameService;
 
-        public EventController(IEventService _eventService)
+        public EventController(IEventService _eventService, IFootballGameService _footballGameService)
         {
             eventService = _eventService;
+            footballGameService = _footballGameService;
         }
 
         public async Task<IActionResult> All()
@@ -20,9 +22,16 @@ namespace SoftUniFinalProject.Controllers
             return View(model);
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> DetailsGame(int Id)
         {
-            return View();
+            var model = await footballGameService.GetFootballDetailsAsync(Id);
+
+            if (model == null) 
+            {
+                return BadRequest();
+            }
+
+            return View(model);
         }
 
         public IActionResult Create()

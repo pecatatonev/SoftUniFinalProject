@@ -18,11 +18,12 @@
                 <p class="mb-0"><span class="fw-bold">Starting Time: </span>@e.StartOn</p>
             </div>
 
-            <a asp-controller="Event" asp-action="Details" asp-route-id="@e.FootballGameId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Details about the game</a>
+            <a asp-controller="Event" asp-action="DetailsGame" asp-route-id="@e.FootballGameId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Details about the game</a>
             <a asp-controller="Comment" asp-action="All" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Comments</a>
             @if (User?.Identity?.Name == e.Organiser)
             {
                 <a asp-controller="Event" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+                <a asp-controller="Event" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
             }
             else
             {

@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\Event\" />
     <Folder Include="Contracts\Home\" />
     <Folder Include="Contracts\Attendance\" />
     <Folder Include="Contracts\Comment\" />
