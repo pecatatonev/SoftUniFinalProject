@@ -40,10 +40,10 @@ namespace SoftUniFinalProject.Core.Services.EventService
                 .ToListAsync();
         }
 
-        public async Task<FootballGameViewModel> GetFootballDetailsAsync(int footballGameId)
+        public async Task<FootballGameViewModel> GetFootballDetailsAsync(int Id)
         {
             return await repository.AllReadOnly<FootballGame>()
-               .Where(fb => fb.Id == footballGameId)
+               .Where(fb => fb.Id == Id)
                .Select(fb => new FootballGameViewModel()
                {
                     Id = fb.Id,

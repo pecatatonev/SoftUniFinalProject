@@ -72,7 +72,7 @@ namespace SoftUniFinalProject.Controllers
 
                 return View(model);
             }
-
+            //check redirect 
             return RedirectToAction(nameof(DetailsGame), new { Id = result });
         }
 
