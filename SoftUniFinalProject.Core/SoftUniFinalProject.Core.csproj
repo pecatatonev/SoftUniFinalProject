@@ -16,12 +16,10 @@
     <Folder Include="Contracts\Attendance\" />
     <Folder Include="Contracts\Comment\" />
     <Folder Include="Models\Home\" />
-    <Folder Include="Models\Event\" />
     <Folder Include="Models\Comment\" />
     <Folder Include="Models\Attendance\" />
     <Folder Include="Services\AttendanceService\" />
     <Folder Include="Services\CommentService\" />
-    <Folder Include="Services\EventService\" />
     <Folder Include="Services\HomeService\" />
   </ItemGroup>
 

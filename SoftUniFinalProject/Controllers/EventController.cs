@@ -1,12 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoftUniFinalProject.Core.Contracts.Event;
+using SoftUniFinalProject.Core.Contracts.Team;
 
 namespace SoftUniFinalProject.Controllers
 {
     public class EventController : Controller
     {
-        public IActionResult All()
+        private readonly IEventService eventService;
+
+        public EventController(IEventService _eventService)
         {
-            return View();
+            eventService = _eventService;
+        }
+
+        public async Task<IActionResult> All()
+        {
+            var model = await eventService.AllEventsAsync();
+
+            return View(model);
         }
 
         public IActionResult Details()
