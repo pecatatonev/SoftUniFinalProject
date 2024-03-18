@@ -12,7 +12,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
     {
         private readonly IRepository repository;
 
-        private readonly ILogger logger;
+        private readonly ILogger<TeamService> logger;
         public TeamService(IRepository _repository, ILogger<TeamService> _logger)
         {
             repository = _repository;

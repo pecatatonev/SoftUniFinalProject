@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Services.EventService;
 using SoftUniFinalProject.Core.Services.TeamService;
 using SoftUniFinalProject.Infrastructure.Data;
 using SoftUniFinalProject.Infrastructure.Data.Common;
@@ -11,8 +13,12 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection service) 
         {
+            service.AddLogging();
+
             service.AddScoped<ISponsorService, SponsorService>();
             service.AddScoped<ITeamService, TeamService>();
+            service.AddScoped<IEventService, EventService>();
+            service.AddScoped<IFootballGameService, FootballGameService>();
 
             return service;
         }
