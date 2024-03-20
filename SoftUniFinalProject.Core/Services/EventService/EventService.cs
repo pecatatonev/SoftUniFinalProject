@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Models.Event;
@@ -71,8 +72,16 @@ namespace SoftUniFinalProject.Core.Services.EventService
                 FootballGameId = model.FootballGameId,
             };
 
+            EventParticipant participant = new EventParticipant()
+            {
+                EventId = footballEvent.Id,
+                UserId = userId,
+            };
+
+            footballEvent.EventParticipants.Add(participant);
             try
             {
+                await repository.AddAsync(participant);
                 await repository.AddAsync(footballEvent);
                 await repository.SaveChangesAsync();
             }

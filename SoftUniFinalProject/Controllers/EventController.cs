@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Models.Event;
@@ -11,6 +12,7 @@ using System.Security.Claims;
 
 namespace SoftUniFinalProject.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         private readonly IEventService eventService;

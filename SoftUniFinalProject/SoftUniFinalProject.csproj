@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Attendance\" />
     <Folder Include="Views\Comment\" />
   </ItemGroup>
 

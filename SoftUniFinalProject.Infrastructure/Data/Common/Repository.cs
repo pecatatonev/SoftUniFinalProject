@@ -192,5 +192,10 @@ namespace SoftUniFinalProject.Infrastructure.Data.Common
         {
             return await DbSet<T>().AnyAsync(predicate);
         }
+
+        public async Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return await DbSet<T>().FirstOrDefaultAsync(predicate);
+        }
     }
 }
