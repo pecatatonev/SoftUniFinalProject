@@ -153,9 +153,48 @@ namespace SoftUniFinalProject.Controllers
             return RedirectToAction(nameof(All));
         }
 
-        public IActionResult Delete()
+        [HttpGet]
+        public async Task<IActionResult> Delete(int Id)
         {
-            return View();
+            if ((await eventService.ExistsAsync(Id) == false))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            if (await eventService.SameOrganiserAsync(Id, User.Id()) == false)
+            {
+                return RedirectToAction(nameof(All));
+            };
+
+            var eventToDelete = await eventService.EventByIdAsync(Id);
+            var model = new EventDeleteViewModel()
+            {
+                Id = eventToDelete.Id,
+                Location = eventToDelete.Location,
+                Name = eventToDelete.Name,
+                StartOn = eventToDelete.StartOn.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int Id, EventDeleteViewModel model)
+        {
+            if ((await eventService.ExistsAsync(Id) == false))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            //later admin or organiser
+            if (await eventService.SameOrganiserAsync(Id, User.Id()) == false)
+            {
+                return RedirectToAction(nameof(All));
+            };
+
+            await eventService.DeleteAsync(model.Id);
+            //later check joined
+            return RedirectToAction(nameof(All));
         }
 
         //maybe search action

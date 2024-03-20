@@ -86,6 +86,16 @@ namespace SoftUniFinalProject.Core.Services.EventService
             return footballEvent.Id;
         }
 
+        public async Task DeleteAsync(int eventId)
+        {
+            var eventToDelete = await repository.GetByIdAsync<Event>(eventId);
+            repository.Delete(eventToDelete);
+
+            //later check joined participant
+
+            await repository.SaveChangesAsync();
+        }
+
         public async Task<int> Edit(int eventId, AddEventViewModel model)
         {
             var eventToEdit = await repository.GetByIdAsync<Event>(eventId);
