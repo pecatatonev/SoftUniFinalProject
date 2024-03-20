@@ -89,6 +89,16 @@ namespace SoftUniFinalProject.Infrastructure.Data.Common
         /// <returns>Error code</returns>
         Task<int> SaveChangesAsync();
 
+        /// <summary>
+        /// Checking if something already exist
+        /// </summary>
+        /// <returns>true if already exist</returns>
         Task<bool> AlreadyExistAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
+
+        /// <summary>
+        /// Find something
+        /// </summary>
+        /// <returns>item or null if empty</returns>
+        Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
     }
 }
