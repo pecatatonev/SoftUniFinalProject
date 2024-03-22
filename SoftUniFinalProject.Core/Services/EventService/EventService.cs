@@ -98,6 +98,10 @@ namespace SoftUniFinalProject.Core.Services.EventService
         public async Task DeleteAsync(int eventId)
         {
             var eventToDelete = await repository.GetByIdAsync<Event>(eventId);
+            var joinedUsers = repository.All<EventParticipant>(ep => ep.EventId == eventId);
+            var comments = repository.All<Comment>(c => c.EventId == eventId);
+            repository.DeleteRange(joinedUsers);
+            repository.DeleteRange(comments);
             repository.Delete(eventToDelete);
 
             //later check joined participant

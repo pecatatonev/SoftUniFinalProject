@@ -21,12 +21,16 @@ namespace SoftUniFinalProject.Core.Services.AttendanceService
             
             if (await _repository.AlreadyExistAsync<EventParticipant>(e => e.EventId == eventId && e.UserId == userId))
             {
-                
                 return false;
             }
 
-            
-            await _repository.AddAsync(new EventParticipant { EventId = eventId, UserId = userId });
+            var eventParticipant = new EventParticipant { EventId = eventId, UserId = userId };
+
+            await _repository.AddAsync(eventParticipant);
+
+            var eventToAddParticipant = await _repository.GetByIdAsync<Event>(eventId);
+            eventToAddParticipant.EventParticipants.Add(eventParticipant);
+
             await _repository.SaveChangesAsync();
             return true;
         }

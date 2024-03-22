@@ -145,7 +145,6 @@ namespace SoftUniFinalProject.Controllers
 
             await commentService.DeleteAsync(model.Id);
 
-            //check eventid it is 0 save it in advance
             return RedirectToAction(nameof(All), new { Id = model.EventId });
         }
     }
