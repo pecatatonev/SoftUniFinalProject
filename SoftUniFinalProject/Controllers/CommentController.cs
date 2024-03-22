@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SoftUniFinalProject.Core.Contracts.Comment;
 
 namespace SoftUniFinalProject.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
-        public IActionResult All()
+        private readonly ICommentService commentService;
+
+        public CommentController(ICommentService _commentService)
         {
-            return View();
+            commentService = _commentService;
+        }
+        public async Task<IActionResult> All(int Id)
+        {
+            var model = await commentService.GetAllCommentsForEventAsync(Id);
+
+            return View(model);
         }
 
         public IActionResult Create()

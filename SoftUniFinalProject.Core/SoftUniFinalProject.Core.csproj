@@ -12,10 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Contracts\Home\" />
-    <Folder Include="Contracts\Comment\" />
     <Folder Include="Models\Home\" />
-    <Folder Include="Models\Comment\" />
-    <Folder Include="Services\CommentService\" />
     <Folder Include="Services\HomeService\" />
   </ItemGroup>
 

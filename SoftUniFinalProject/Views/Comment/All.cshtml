@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SoftUniFinalProject.Core.Models.Comment.CommentViewModel>
+
+@{
+    ViewBag.Title = "Comments Page";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Comment</th>
+                <th>Posted By</th>
+                <th>Date Posted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model)
+            {
+                <tr>
+                    <td>@comment.Text</td>
+                    <td>@comment.UserName</td>
+                    <td>@comment.PublicationTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No comments available for this event.</p>
+}
