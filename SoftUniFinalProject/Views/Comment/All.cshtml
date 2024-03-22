@@ -36,8 +36,8 @@
                     @if (User.Identity.IsAuthenticated && comment.UserName == User.Identity.Name)
                     {
                         <td>
-                            <a asp-controller="Comment" asp-action="Edit" asp-route-Id="@comment.Id" class="btn btn-primary">Edit</a>
-                            <a asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" class="btn btn-danger">Delete</a>
+                            <a asp-controller="Comment" asp-action="Edit" asp-route-Id="@comment.Id" asp-route-eventId="@comment.EventId" class="btn btn-primary">Edit</a>
+                            <a asp-controller="Comment" asp-action="Delete" asp-route-Id="@comment.Id" asp-route-eventId="@comment.EventId" class="btn btn-danger">Delete</a>
                         </td>
                     }
                 </tr>

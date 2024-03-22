@@ -8,16 +8,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SoftUniFinalProject.Infrastructure.Constants.DataConstants.Comment;
 
 namespace SoftUniFinalProject.Core.Models.Comment
 {
-    public class CommentToCreateViewModel
+    public class CommentDeleteViewModel
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = DataConstants.RequiredMessage)]
-        [StringLength(TextMaxLenght, MinimumLength = TextMinLenght, ErrorMessage = DataConstants.LenghtMessage)]
         public string Text { get; set; } = string.Empty;
+        public string PublicationTime { get; set; } = string.Empty;
         public int EventId { get; set; }
+        public string UserId { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
     }
 }

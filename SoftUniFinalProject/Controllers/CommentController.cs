@@ -23,7 +23,6 @@ namespace SoftUniFinalProject.Controllers
         }
         public async Task<IActionResult> All(int Id)
         {
-            //check if eventId exist later
             ViewBag.Id = Id;
             var model = await commentService.GetAllCommentsForEventAsync(Id);
             return View(model);
@@ -39,7 +38,7 @@ namespace SoftUniFinalProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CommentToCreateViewModel model, int eventId)
         {
-            
+
             var userId = User.Id();
             await commentService.CreateCommentAsync(model, userId, eventId);
 
@@ -52,17 +51,17 @@ namespace SoftUniFinalProject.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int Id)
+        public async Task<IActionResult> Edit(int Id, int eventId)
         {
             if ((await commentService.ExistsAsync(Id)) == false)
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction(nameof(All), new { Id = eventId });
             }
 
             var userId = User.Id();
             if (await commentService.SameUserAsync(Id, userId) == false)
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction(nameof(All), new { Id = eventId });
             };
 
             var eventModel = await commentService.CommentByIdAsync(Id);
@@ -70,7 +69,8 @@ namespace SoftUniFinalProject.Controllers
             var model = new CommentToCreateViewModel()
             {
                 Text = eventModel.Text,
-                Id = eventModel.Id
+                Id = eventModel.Id,
+                EventId = eventId
             };
 
             return View(model);
@@ -81,18 +81,17 @@ namespace SoftUniFinalProject.Controllers
         {
             if (Id != model.Id)
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction(nameof(All), new { Id = model.EventId });
             }
 
             if (await commentService.ExistsAsync(model.Id) == false)
             {
                 ModelState.AddModelError("", "Comment does not exist");
-                return View(model);
             }
 
             if (await commentService.SameUserAsync(model.Id, User.Id()) == false)
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction(nameof(All), new { Id = model.EventId });
             };
 
             var result = await commentService.EditAsync(Id, model);
@@ -105,9 +104,49 @@ namespace SoftUniFinalProject.Controllers
             return RedirectToAction(nameof(All), new { Id = result });
         }
 
-        public IActionResult Delete()
+        [HttpGet]
+        public async Task<IActionResult> Delete(int Id, int eventId)
         {
-            return View();
+            if ((await commentService.ExistsAsync(Id) == false))
+            {
+                return RedirectToAction(nameof(All), new { Id = eventId });
+            }
+
+            if (await commentService.SameUserAsync(Id, User.Id()) == false)
+            {
+                return RedirectToAction(nameof(All), new { Id = eventId });
+            };
+
+            var commentToDelete = await commentService.CommentByIdWithUserAsync(Id);
+            var model = new CommentDeleteViewModel()
+            {
+                Text = commentToDelete.Text,
+                PublicationTime = commentToDelete.PublicationTime.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
+                UserName = commentToDelete.User.UserName,
+                EventId = eventId,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(CommentDeleteViewModel model, int Id)
+        {
+            if ((await commentService.ExistsAsync(Id) == false))
+            {
+                return RedirectToAction(nameof(All), new { Id = model.EventId });
+            }
+
+            //later admin or organiser
+            if (await commentService.SameUserAsync(Id, User.Id()) == false)
+            {
+                return RedirectToAction(nameof(All), new { Id = model.EventId });
+            };
+
+            await commentService.DeleteAsync(model.Id);
+
+            //check eventid it is 0 save it in advance
+            return RedirectToAction(nameof(All), new { Id = model.EventId });
         }
     }
 }

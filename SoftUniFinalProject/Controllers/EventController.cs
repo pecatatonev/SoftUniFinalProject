@@ -195,7 +195,7 @@ namespace SoftUniFinalProject.Controllers
             };
 
             await eventService.DeleteAsync(model.Id);
-            //later check joined
+            //later: check if delete is successfull when there are people joined event
             return RedirectToAction(nameof(All));
         }
 

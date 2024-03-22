@@ -87,10 +87,20 @@ namespace SoftUniFinalProject.Core.Services.CommentService
             return result;
         }
 
+
+        public async Task<Infrastructure.Data.Models.Comment> CommentByIdWithUserAsync(int id)
+        {
+            return await repository.AllReadOnly<Infrastructure.Data.Models.Comment>()
+            .Where(c => c.Id == id)
+            .Include(c => c.User)
+            .FirstAsync();
+        }
+
         public async Task<Infrastructure.Data.Models.Comment> CommentByIdAsync(int id)
         {
             return await repository.AllReadOnly<Infrastructure.Data.Models.Comment>()
-            .Where(c => c.Id == id).FirstAsync();
+            .Where(c => c.Id == id)
+            .FirstAsync();
         }
 
         public async Task<int> EditAsync(int commentId, CommentToCreateViewModel model)
@@ -102,6 +112,14 @@ namespace SoftUniFinalProject.Core.Services.CommentService
 
             await repository.SaveChangesAsync();
             return commentToEdit.EventId;
+        }
+
+        public async Task DeleteAsync(int commentId)
+        {
+            var commentToDelete = await repository.GetByIdAsync<Infrastructure.Data.Models.Comment>(commentId);
+            repository.Delete(commentToDelete);
+
+            await repository.SaveChangesAsync();
         }
     }
 }
