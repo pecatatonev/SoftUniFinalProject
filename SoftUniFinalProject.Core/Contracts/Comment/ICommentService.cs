@@ -10,5 +10,6 @@ namespace SoftUniFinalProject.Core.Contracts.Comment
     public interface ICommentService
     {
         Task<IEnumerable<CommentViewModel>> GetAllCommentsForEventAsync(int eventId);
+        Task<int> CreateCommentAsync(CommentToCreateViewModel commentModel,string userId, int eventId);
     }
 }

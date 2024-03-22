@@ -2,11 +2,19 @@
 
 @{
     ViewBag.Title = "Comments Page";
+    var eventId = ViewBag.Id;
 }
 
 
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-controller="Comment" asp-action="Create" asp-route-eventId="@eventId" class="btn btn-primary">Add Comment</a>
+    <br />
+    <br />
+}
 
 @if (Model.Any())
 {

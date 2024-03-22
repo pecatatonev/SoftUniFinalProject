@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Comment;
 using SoftUniFinalProject.Core.Models.Comment;
 using SoftUniFinalProject.Infrastructure.Constants;
@@ -16,10 +17,38 @@ namespace SoftUniFinalProject.Core.Services.CommentService
     public class CommentService : ICommentService
     {
         private readonly IRepository repository;
+        private readonly ILogger<CommentService> logger;
 
-        public CommentService(IRepository _repository)
+        public CommentService(IRepository _repository, ILogger<CommentService> _logger)
         {
             repository = _repository;
+            logger = _logger;
+        }
+
+        public async Task<int> CreateCommentAsync(CommentToCreateViewModel commentModel,string userId, int eventId)
+        {
+            Comment comment = new Comment()
+            {
+                EventId = eventId,
+                PublicationTime = DateTime.Now,
+                Text = commentModel.Text,
+                UserId = userId,
+            };
+
+           
+            try
+            {
+                await repository.AddAsync(comment);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(nameof(CreateCommentAsync), ex);
+                throw new ApplicationException("Database failed to save info", ex);
+            }
+
+
+            return comment.Id;
         }
 
         public async Task<IEnumerable<CommentViewModel>> GetAllCommentsForEventAsync(int eventId)
@@ -29,7 +58,7 @@ namespace SoftUniFinalProject.Core.Services.CommentService
                 .Select(c => new CommentViewModel()
                 {
                     Id = c.Id,
-                    PublicationTime = DateTime.Now.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
+                    PublicationTime = c.PublicationTime.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
                     Text = c.Text,
                     UserId = c.UserId,
                     EventId = eventId,
