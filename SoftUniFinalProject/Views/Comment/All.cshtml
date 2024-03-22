@@ -33,6 +33,13 @@
                     <td>@comment.Text</td>
                     <td>@comment.UserName</td>
                     <td>@comment.PublicationTime</td>
+                    @if (User.Identity.IsAuthenticated && comment.UserName == User.Identity.Name)
+                    {
+                        <td>
+                            <a asp-controller="Comment" asp-action="Edit" asp-route-Id="@comment.Id" class="btn btn-primary">Edit</a>
+                            <a asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

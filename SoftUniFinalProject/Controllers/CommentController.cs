@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Comment;
+using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Models.Comment;
 using SoftUniFinalProject.Core.Models.Event;
 using SoftUniFinalProject.Core.Services.EventService;
 using SoftUniFinalProject.Extensions;
 using SoftUniFinalProject.Infrastructure.Constants;
+using System.Globalization;
 
 namespace SoftUniFinalProject.Controllers
 {
@@ -38,7 +41,7 @@ namespace SoftUniFinalProject.Controllers
         {
             
             var userId = User.Id();
-            var result = await commentService.CreateCommentAsync(model, userId, eventId);
+            await commentService.CreateCommentAsync(model, userId, eventId);
 
             if (!ModelState.IsValid)
             {
@@ -48,9 +51,58 @@ namespace SoftUniFinalProject.Controllers
             return RedirectToAction(nameof(All), new { Id = eventId });
         }
 
-        public IActionResult Edit()
+        [HttpGet]
+        public async Task<IActionResult> Edit(int Id)
         {
-            return View();
+            if ((await commentService.ExistsAsync(Id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            var userId = User.Id();
+            if (await commentService.SameUserAsync(Id, userId) == false)
+            {
+                return RedirectToAction(nameof(All));
+            };
+
+            var eventModel = await commentService.CommentByIdAsync(Id);
+
+            var model = new CommentToCreateViewModel()
+            {
+                Text = eventModel.Text,
+                Id = eventModel.Id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(CommentToCreateViewModel model, int Id)
+        {
+            if (Id != model.Id)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            if (await commentService.ExistsAsync(model.Id) == false)
+            {
+                ModelState.AddModelError("", "Comment does not exist");
+                return View(model);
+            }
+
+            if (await commentService.SameUserAsync(model.Id, User.Id()) == false)
+            {
+                return RedirectToAction(nameof(All));
+            };
+
+            var result = await commentService.EditAsync(Id, model);
+
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(All), new { Id = result });
         }
 
         public IActionResult Delete()
