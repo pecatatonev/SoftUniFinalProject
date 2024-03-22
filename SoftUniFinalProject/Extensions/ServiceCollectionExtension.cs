@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Attendance;
+using SoftUniFinalProject.Core.Contracts.Comment;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Services.AttendanceService;
+using SoftUniFinalProject.Core.Services.CommentService;
 using SoftUniFinalProject.Core.Services.EventService;
 using SoftUniFinalProject.Core.Services.TeamService;
 using SoftUniFinalProject.Infrastructure.Data;
@@ -22,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             service.AddScoped<IEventService, EventService>();
             service.AddScoped<IFootballGameService, FootballGameService>();
             service.AddScoped<IAttendanceService, AttendanceService>();
+            service.AddScoped<ICommentService, CommentService>();
 
             return service;
         }

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SoftUniFinalProject.Core.Models.Comment.CommentViewModel>
+
+@{
+    ViewBag.Title = "Comments Page";
+    var eventId = ViewBag.Id;
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-controller="Comment" asp-action="Create" asp-route-eventId="@eventId" class="btn btn-primary">Add Comment</a>
+    <br />
+    <br />
+}
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Comment</th>
+                <th>Posted By</th>
+                <th>Date Posted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model)
+            {
+                <tr>
+                    <td>@comment.Text</td>
+                    <td>@comment.UserName</td>
+                    <td>@comment.PublicationTime</td>
+                    @if (User.Identity.IsAuthenticated && comment.UserName == User.Identity.Name)
+                    {
+                        <td>
+                            <a asp-controller="Comment" asp-action="Edit" asp-route-Id="@comment.Id" asp-route-eventId="@comment.EventId" class="btn btn-primary">Edit</a>
+                            <a asp-controller="Comment" asp-action="Delete" asp-route-Id="@comment.Id" asp-route-eventId="@comment.EventId" class="btn btn-danger">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No comments available for this event.</p>
+}
