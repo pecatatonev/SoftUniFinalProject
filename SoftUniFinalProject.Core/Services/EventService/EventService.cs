@@ -104,7 +104,6 @@ namespace SoftUniFinalProject.Core.Services.EventService
             repository.DeleteRange(comments);
             repository.Delete(eventToDelete);
 
-
             await repository.SaveChangesAsync();
         }
 
