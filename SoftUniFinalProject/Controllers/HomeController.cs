@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Models;
 using System.Diagnostics;
 
@@ -6,16 +7,20 @@ namespace SoftUniFinalProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
+        private readonly IEventService eventService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> _logger, IEventService _eventService)
         {
-            _logger = logger;
+            logger = _logger;
+            eventService = _eventService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await eventService.LastThreeEvents();
+
+            return View(model);
         }
 
         public IActionResult About()
