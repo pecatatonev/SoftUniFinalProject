@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Attendance;
 using SoftUniFinalProject.Core.Contracts.Comment;
 using SoftUniFinalProject.Core.Contracts.Event;
+using SoftUniFinalProject.Core.Contracts.Home;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Services.AttendanceService;
 using SoftUniFinalProject.Core.Services.CommentService;
 using SoftUniFinalProject.Core.Services.EventService;
+using SoftUniFinalProject.Core.Services.HomeService;
 using SoftUniFinalProject.Core.Services.TeamService;
 using SoftUniFinalProject.Infrastructure.Data;
 using SoftUniFinalProject.Infrastructure.Data.Common;
@@ -25,6 +27,8 @@ namespace Microsoft.Extensions.DependencyInjection
             service.AddScoped<IFootballGameService, FootballGameService>();
             service.AddScoped<IAttendanceService, AttendanceService>();
             service.AddScoped<ICommentService, CommentService>();
+
+            service.AddTransient<IHomeService, HomeService>();
 
             return service;
         }
