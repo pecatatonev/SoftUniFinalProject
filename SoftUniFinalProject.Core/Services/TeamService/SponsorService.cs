@@ -30,6 +30,17 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<AddSponsorToTeamViewModel>> AllSponsorsToAddAsync()
+        {
+            return await repository.AllReadOnly<Sponsor>()
+                .Select(x => new AddSponsorToTeamViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                })
+                .ToListAsync();
+        }
+
         public async Task<bool> SponsorExistAsync(int sponsorId)
         {
             return await repository.AllReadOnly<Sponsor>()

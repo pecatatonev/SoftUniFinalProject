@@ -32,7 +32,7 @@ namespace SoftUniFinalProject.Core.Models.Team
         [Required]
         public string ImageUrl { get; set; } = string.Empty;
         [Display(Name = "Sponsors")]
-        public int SponsorId { get; set; }
-        public IEnumerable<SponsorServiceViewModel> Sponsors { get; set; } = new List<SponsorServiceViewModel>();
+        public IList<int> SelectedSponsors { get; set; } = new List<int>();
+        public IEnumerable<AddSponsorToTeamViewModel> Sponsors { get; set; } = new List<AddSponsorToTeamViewModel>();
     }
 }

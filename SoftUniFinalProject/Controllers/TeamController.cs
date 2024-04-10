@@ -43,7 +43,7 @@ namespace SoftUniFinalProject.Controllers
             //Only Admin can create team later check
             var model = new AddTeamViewModel()
             {
-                Sponsors = await sponsorService.AllSponsorsAsync(),
+                Sponsors = await sponsorService.AllSponsorsToAddAsync(),
             };
 
             return View(model);
@@ -52,14 +52,9 @@ namespace SoftUniFinalProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(AddTeamViewModel model) 
         {
-            if ((await sponsorService.SponsorExistAsync(model.SponsorId)) == false)
-            {
-                ModelState.AddModelError(nameof(model.SponsorId), "Sponsor doesn't exist");
-            }
-
             if (!ModelState.IsValid)
             {
-                model.Sponsors = await sponsorService.AllSponsorsAsync();
+                model.Sponsors = await sponsorService.AllSponsorsToAddAsync();
 
                 return View(model);
             }
