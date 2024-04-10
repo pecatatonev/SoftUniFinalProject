@@ -107,7 +107,7 @@ namespace SoftUniFinalProject.Core.Services.EventService
             await repository.SaveChangesAsync();
         }
 
-        public async Task<int> Edit(int eventId, AddEventViewModel model)
+        public async Task<int> EditAsync(int eventId, AddEventViewModel model)
         {
             var eventToEdit = await repository.GetByIdAsync<Event>(eventId);
 
@@ -142,6 +142,21 @@ namespace SoftUniFinalProject.Core.Services.EventService
         public async Task<bool> ExistsAsync(int id)
         {
             return await repository.AllReadOnly<Event>().AnyAsync(e => e.Id == id);
+        }
+
+        public async Task<IEnumerable<EventIndexViewModel>> LastThreeEvents()
+        {
+            return await repository.AllReadOnly<Event>()
+                .OrderByDescending(e => e.Id)
+                .Take(3)
+                .Select(e => new EventIndexViewModel()
+                {
+                    Name = e.Name,
+                    Location = e.Location,
+                    StartOn = e.StartOn.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
+                    FootballGame = $"{e.FootballGame.HomeTeam.Name} vs {e.FootballGame.AwayTeam.Name}",
+                })
+                .ToListAsync();
         }
 
         public async Task<bool> SameOrganiserAsync(int eventId, string currentUserId)

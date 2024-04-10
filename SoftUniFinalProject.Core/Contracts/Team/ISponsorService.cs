@@ -8,6 +8,7 @@ namespace SoftUniFinalProject.Core.Contracts.Team
 
         Task<IEnumerable<SponsorServiceViewModel>> AllSponsorsAsync();
 
+        Task<IEnumerable<AddSponsorToTeamViewModel>> AllSponsorsToAddAsync();
         Task<bool> SponsorExistAsync(int sponsorId);
     }
 }

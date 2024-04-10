@@ -10,10 +10,4 @@
     <ProjectReference Include="..\SoftUniFinalProject.Infrastructure\SoftUniFinalProject.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\Home\" />
-    <Folder Include="Models\Home\" />
-    <Folder Include="Services\HomeService\" />
-  </ItemGroup>
-
 </Project>

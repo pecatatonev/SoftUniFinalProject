@@ -135,7 +135,7 @@ namespace SoftUniFinalProject.Controllers
                 ModelState.AddModelError(nameof(model.FootballGameId), "Football Game doesn't exist");
             }
 
-            if (await eventService.Edit(model.Id, model) == -1)
+            if (await eventService.EditAsync(model.Id, model) == -1)
             {
                 ModelState.AddModelError(nameof(model.StartOn), $"Invalid Date! Format must be:{DataConstants.DateTimeFormat}");
 

@@ -54,12 +54,15 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                 StadiumName= model.Name,
             };
 
-            TeamSponsor teamSponsor = new TeamSponsor() 
+            foreach (var sponsorId in model.SelectedSponsors)
             {
-                TeamId = team.Id,
-                SponsorId = model.SponsorId
-            };
-            team.TeamsSponsors.Add(teamSponsor);
+                TeamSponsor teamSponsor = new TeamSponsor()
+                {
+                    TeamId = team.Id,
+                    SponsorId = sponsorId
+                };
+                team.TeamsSponsors.Add(teamSponsor);
+            }
 
             try
             {

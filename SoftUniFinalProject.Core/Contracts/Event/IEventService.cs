@@ -15,8 +15,10 @@ namespace SoftUniFinalProject.Core.Contracts.Event
         
         Task<bool> SameOrganiserAsync(int eventId, string currentUserId);
 
-        Task<int> Edit(int eventId, AddEventViewModel model);
+        Task<int> EditAsync(int eventId, AddEventViewModel model);
 
         Task DeleteAsync(int eventId);
+
+        Task<IEnumerable<EventIndexViewModel>> LastThreeEvents();
     }
 }

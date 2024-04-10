@@ -1,8 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<SoftUniFinalProject.Core.Models.Event.EventIndexViewModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{ ViewData["Title"] = "Home Page";
+var events = Model.ToList(); } 
+
+@if (!events.Any())
+{ <div class="mt-4 p-5 bg-light">
+    <h1 class="display-4">Welcome to the best place for organising football events</h1>
+    <p class="lead"> There are no events in the system currently available so , if you want you can create one.</p> 
+    <hr class="my-4">
+    <p class="lead">
+        @if (User?.Identity?.IsAuthenticated ?? false)
+        { <a asp-controller="Event" asp-action="Create" class="btn btn-primary btn-lg" role="button">Create Event</a> }
+    </p> 
+  </div>
+}
+<div class="text-center row">
+    @foreach (var e in Model)
+    {
+        <div class="card col-4" style="width: 20rem; ">
+            <div class="card-body">
+                <h4 class="card-title mt-1">@e.Name</h4>
+                <h5 class="card-title mt-1">@e.FootballGame</h5>
+                <p class="mb-0"><span class="fw-bold">Location: </span>@e.Location</p>
+                <p class="mb-0"><span class="fw-bold">Starting Time: </span>@e.StartOn</p>
+            </div>
+        </div>
+    }
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

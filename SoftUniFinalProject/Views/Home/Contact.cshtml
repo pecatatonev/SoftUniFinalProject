@@ -1,0 +1,21 @@
+﻿@model SoftUniFinalProject.Core.Models.Home.ContactFormViewModel
+@{
+    ViewBag.Title = "Contact Form";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form asp-action="Contact" method="post">
+    <label for="email">Email:</label>
+    <input asp-for="@Model.Email" type="email" id="email" name="email" required>
+
+    <label for="subject">Subject:</label>
+    <input asp-for="@Model.Subject" type="text" id="subject" name="subject" required>
+
+    <label for="message">Message:</label>
+    <textarea asp-for="@Model.Message" id="message" name="message" required></textarea>
+
+    <button type="submit">Send</button>
+</form>
