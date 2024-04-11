@@ -201,7 +201,5 @@ namespace SoftUniFinalProject.Controllers
 
             return RedirectToAction(nameof(All));
         }
-
-        //maybe search action
     }
 }
