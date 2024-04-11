@@ -17,7 +17,8 @@ namespace SoftUniFinalProject.Core.Models.Event
 
         public EventSorting Sorting { get; set; }
 
-        public int CurrentPage = 1;
+        public int CurrentPage { get; set; } = 1;
+
 
         public int TotalEventsCount { get; set; }
 
