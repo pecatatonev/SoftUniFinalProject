@@ -24,11 +24,14 @@ namespace SoftUniFinalProject.Controllers
             footballGameService = _footballGameService;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery] AllEventsQueryModel query)
         {
-            var model = await eventService.AllEventsAsync();
+            var model = await eventService.AllSortingAsync(query.SearchTerm, query.Sorting, query.CurrentPage, query.EventsPerPage);
 
-            return View(model);
+            query.TotalEventsCount = model.TotalEventCount;
+            query.Events = model.Events;
+
+            return View(query);
         }
 
         public async Task<IActionResult> DetailsGame(int Id)
@@ -198,7 +201,5 @@ namespace SoftUniFinalProject.Controllers
 
             return RedirectToAction(nameof(All));
         }
-
-        //maybe search action
     }
 }

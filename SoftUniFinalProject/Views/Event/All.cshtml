@@ -1,41 +1,70 @@
-﻿@model IEnumerable<SoftUniFinalProject.Core.Models.Event.EventAllViewModel>
-@{
-    ViewBag.Title = "All Events";
+﻿@model SoftUniFinalProject.Core.Models.Event.AllEventsQueryModel
+@{ 
+     ViewBag.Title = "All Events"; 
 }
-
-
 <h2 class="text-center">@ViewBag.Title</h2>
-<hr />
-
-<div class="text-center row">
-    @foreach (var e in Model)
-    {
-        <div class="card col-4" style="width: 20rem; ">
-            <div class="card-body">
-                <h4 class="card-title mt-1">@e.Name</h4>
-                <h5 class="card-title mt-1">@e.Description</h5>
-                <h5 class="card-title mt-1">@e.Location</h5>
-                <p class="mb-0"><span class="fw-bold">Starting Time: </span>@e.StartOn</p>
-            </div>
-
-            <a asp-controller="Event" asp-action="DetailsGame" asp-route-id="@e.FootballGameId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Details about the game</a>
-            <a asp-controller="Comment" asp-action="All" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Comments</a>
-            @if (User?.Identity?.Name == e.Organiser)
-            {
-                <a asp-controller="Event" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
-                <a asp-controller="Event" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
-            }
-            else
-            {
-                @*Ако има време махни бутона Join ако потребителя е влязъл*@
-                <form class="input-group-sm" asp-controller="Attendance" asp-action="Join" asp-route-id="@e.Id">
-                    <input type="submit" value="Join" class="fs-6 btn btn-warning mb-2 w-100 p-3 fw-bold" />
-                </form>
-            }
+<hr /> 
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3">
+                <label asp-for="SearchTerm"></label>
+                <input asp-for="SearchTerm" class="form-control" placeholder="Search By Name,Description and Location">
+        </div> 
+        <div class="form-group col-md-3">
+                <div class="form-group"> 
+                    <label asp-for="Sorting">
+                    </label> <select asp-for="Sorting" class="form-control">
+                        <option value="0">Soonest</option>
+                        <option value="1">Location</option>
+                        <option value="2">AttendanceMost</option>
+               </select>
+                </div>
+        </div> 
+        <div class="col-md-3"> 
+                <div class="form-group mt-4 p-2"> 
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div> 
+        </div> 
+    </div> 
+</form>
+@{
+   var previousPage = Model.CurrentPage - 1;
+   if
+   (previousPage < 1)
+   {
+       previousPage = 1; 
+   }
+   var maxPage = Math.Ceiling((double)Model.TotalEventsCount / Model.EventsPerPage);
+} 
+    <div class="row mb-5"> 
+        <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+            asp-controller="Event" 
+            asp-action="All"
+            asp-route-currentPage="@previousPage"
+            asp-route-searchTerm="@Model.SearchTerm"
+            asp-route-sorting="@((int)Model.Sorting)"><<</a>
         </div>
+    @{
+        var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.Events.Any();
     }
-</div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+       <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end"> 
+           <a class="btn btn-primary
+              @(shouldButtonBeDisabled ? "disabled" : string.Empty)" 
+           asp-controller="Event" 
+           asp-action="All" 
+           asp-route-currentPage="@(Model.CurrentPage + 1)"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)">>></a>
+       </div> 
+    </div>
+    @if (!Model.Events.Any())
+    { 
+        <h2 class="text-center">No Events found by the given criteria!</h2>
+    } 
+    <div class="row"> 
+        @foreach (var eventView in Model.Events)
+        {
+       <partial name="_EventPartial" model="@eventView" />
+   }
+    </div>

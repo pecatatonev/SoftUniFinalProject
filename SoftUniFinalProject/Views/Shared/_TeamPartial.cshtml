@@ -1,0 +1,12 @@
+﻿@model SoftUniFinalProject.Core.Models.Team.TeamsAllViewModel
+
+<div class="card">
+    <img class="card-img-fluid" src="@Model.ImageUrl" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.ManagerName</p>
+        <p class="card-text"><small class="text-muted">@Model.Nickname</small></p>
+    </div>
+    <a asp-controller="Team" asp-action="Sponsors" asp-route-Id="@Model.Id" class="btn btn-primary btn-lg" role="button">View Sponsors</a>
+    <a asp-controller="Team" asp-action="Details" asp-route-Id="@Model.Id" class="btn btn-primary btn-lg" role="button">Details</a>
+</div>
