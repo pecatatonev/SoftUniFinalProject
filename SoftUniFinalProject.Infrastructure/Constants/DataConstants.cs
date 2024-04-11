@@ -12,6 +12,14 @@ namespace SoftUniFinalProject.Infrastructure.Constants
         public const string LenghtMessage = "The {0} field must be between {2} and {1} characters long.";
         public const string LenghtIntegerMessage = "The {0} field must be between {1} and {2}.";
         public const string RequiredMessage = "The {0} field is required.";
+
+        public static class ContactForm
+        {
+            public const string RequiredEmail = "Please enter your email.";
+            public const string ValidEmail = "Please enter a valid email address.";
+            public const string RequiredSubject = "Please enter a subject";
+            public const string RequiredMessage = "Please enter a message.";
+        }
         public static class Sponsor 
         {
             public const int NameMaxLenght = 150;
