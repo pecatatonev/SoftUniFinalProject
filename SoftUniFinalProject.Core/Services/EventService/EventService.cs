@@ -8,6 +8,7 @@ using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.Models;
+using SoftUniFinalProject.Infrastructure.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -31,7 +32,7 @@ namespace SoftUniFinalProject.Core.Services.EventService
         public async Task<IEnumerable<EventAllViewModel>> AllEventsAsync()
         {
             return await repository.AllReadOnly<Event>()
-                .Select(e => new EventAllViewModel() 
+                .Select(e => new EventAllViewModel()
                 {
                     Id = e.Id,
                     Description = e.Description,
@@ -42,6 +43,53 @@ namespace SoftUniFinalProject.Core.Services.EventService
                     Organiser = e.Organiser.UserName,
                 })
                 .ToListAsync();
+        }
+
+        public async Task<EventQueryServiceModel> AllSortingAsync(string? searchTerm = null, 
+            EventSorting sorting = EventSorting.Soonest,
+            int currentPage = 1, 
+            int eventPerPage = 1)
+        {
+            var eventsToShow = repository.AllReadOnly<Event>();
+
+            if (searchTerm != null)
+            {
+                string normalizedSearch = searchTerm.ToLower();
+                eventsToShow = eventsToShow
+                    .Where(e => (e.Name.ToLower().Contains(normalizedSearch) ||
+                    e.Description.ToLower().Contains(normalizedSearch) ||
+                    e.Location.ToLower().Contains(normalizedSearch)));
+            }
+
+            eventsToShow = sorting switch
+            {
+                EventSorting.Location => eventsToShow.OrderBy(e => e.Location),
+                EventSorting.AttendanceMost => eventsToShow.OrderByDescending(e => e.EventParticipants.Count()),
+                _ => eventsToShow.OrderBy(e => e.StartOn)
+            };
+
+            var events = await eventsToShow
+                .Skip((currentPage - 1) * eventPerPage)
+                .Take(eventPerPage)
+                .Select(e => new EventAllViewModel()
+                {
+                    Id = e.Id,
+                    Description = e.Description,
+                    FootballGameId = e.FootballGameId,
+                    Location = e.Location,
+                    Name = e.Name,
+                    Organiser = e.Organiser.UserName,
+                    StartOn = e.StartOn.ToString(DataConstants.DateTimeFormat),
+                })
+                .ToListAsync();
+
+            int totalEvents = await eventsToShow.CountAsync();
+
+            return new EventQueryServiceModel()
+            {
+                Events = events,
+                TotalEventCount = totalEvents,
+            };
         }
 
         public async Task<int> CreateAsync(AddEventViewModel model, string userId)

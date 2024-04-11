@@ -24,11 +24,21 @@ namespace SoftUniFinalProject.Controllers
             footballGameService = _footballGameService;
         }
 
-        public async Task<IActionResult> All()
-        {
-            var model = await eventService.AllEventsAsync();
+        //public async Task<IActionResult> All()
+        //{
+        //    var model = await eventService.AllEventsAsync();
 
-            return View(model);
+        //    return View(model);
+        //}
+
+        public async Task<IActionResult> All([FromQuery] AllEventsQueryModel query)
+        {
+            var model = await eventService.AllSortingAsync(query.SearchTerm, query.Sorting, query.CurrentPage, query.EventsPerPage);
+
+            query.TotalEventsCount = model.TotalEventCount;
+            query.Events = model.Events;
+
+            return View(query);
         }
 
         public async Task<IActionResult> DetailsGame(int Id)

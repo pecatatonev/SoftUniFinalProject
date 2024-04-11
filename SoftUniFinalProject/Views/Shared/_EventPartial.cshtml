@@ -1,0 +1,25 @@
+﻿@model SoftUniFinalProject.Core.Models.Event.EventAllViewModel
+
+<div class="card col-4" style="width: 20rem; ">
+            <div class="card-body">
+                <h4 class="card-title mt-1">@Model.Name</h4>
+                <h5 class="card-title mt-1">@Model.Description</h5>
+                <h5 class="card-title mt-1">@Model.Location</h5>
+                <p class="mb-0"><span class="fw-bold">Starting Time: </span>@Model.StartOn</p>
+            </div>
+
+            <a asp-controller="Event" asp-action="DetailsGame" asp-route-id="@Model.FootballGameId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Details about the game</a>
+            <a asp-controller="Comment" asp-action="All" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Comments</a>
+            @if (User?.Identity?.Name == Model.Organiser)
+            {
+                <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+                <a asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
+            }
+            else
+            {
+                @*Ако има време махни бутона Join ако потребителя е влязъл*@
+                <form class="input-group-sm" asp-controller="Attendance" asp-action="Join" asp-route-id="@Model.Id">
+                    <input type="submit" value="Join" class="fs-6 btn btn-warning mb-2 w-100 p-3 fw-bold" />
+                </form>
+            }
+        </div>
