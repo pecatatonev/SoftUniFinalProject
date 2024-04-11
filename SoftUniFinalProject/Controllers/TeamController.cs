@@ -19,12 +19,6 @@ namespace SoftUniFinalProject.Controllers
             teamService = _teamService;
             sponsorService = _sponsorService;
         }
-        //public async Task<IActionResult> All()
-        //{
-        //    var model = await teamService.AllTeamsAsync();
-
-        //    return View(model);
-        //}
 
         [AllowAnonymous]
         [HttpGet]

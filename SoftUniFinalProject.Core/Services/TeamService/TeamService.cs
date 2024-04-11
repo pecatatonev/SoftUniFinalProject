@@ -23,7 +23,6 @@ namespace SoftUniFinalProject.Core.Services.TeamService
 
         public async Task<TeamQueryServiceModel> AllSortingAsync(string? searchTerm = null, TeamSorting sorting = TeamSorting.NewestAdded, int currentPage = 1, int teamPerPage = 1)
         {
-            //Nickname null option check later
             var teamsToShow = repository.AllReadOnly<Team>();
 
             if (searchTerm != null)
@@ -65,24 +64,6 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                 Teams = teams,
                 TotalTeamsCount = totalEvents
             };
-        }
-
-        public async Task<IEnumerable<TeamsAllViewModel>> AllTeamsAsync()
-        {
-            //Nickname null option check later
-           return await repository.AllReadOnly<Team>()
-                .Select(t => new TeamsAllViewModel 
-                {
-                    Id = t.Id,
-                    Name = t.Name,
-                    StadiumCapacity = t.StadiumCapacity,
-                    YearOfCreation = t.YearOfCreation,
-                    ImageUrl = t.ImageUrl,
-                    StadiumName = t.Name,
-                    Nickname = t.Nickname,
-                    ManagerName = t.ManagerName,
-                })
-                .ToListAsync();
         }
 
         public async Task<int> CreateAsync(AddTeamViewModel model)

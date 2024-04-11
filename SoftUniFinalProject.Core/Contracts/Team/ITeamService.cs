@@ -10,7 +10,6 @@ namespace SoftUniFinalProject.Core.Contracts.Team
             TeamSorting sorting = TeamSorting.NewestAdded,
             int currentPage = 1,
             int eventPerPage = 1);
-        Task<IEnumerable<TeamsAllViewModel>> AllTeamsAsync();
 
         Task<TeamsAllViewModel> GetTeamDetailsAsync(int teamId);
 
