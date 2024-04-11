@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Models.Event;
 using SoftUniFinalProject.Core.Models.Team;
+using SoftUniFinalProject.Core.Services.EventService;
 using System.Net.WebSockets;
 using System.Transactions;
 
@@ -16,11 +19,23 @@ namespace SoftUniFinalProject.Controllers
             teamService = _teamService;
             sponsorService = _sponsorService;
         }
-        public async Task<IActionResult> All()
-        {
-            var model = await teamService.AllTeamsAsync();
+        //public async Task<IActionResult> All()
+        //{
+        //    var model = await teamService.AllTeamsAsync();
 
-            return View(model);
+        //    return View(model);
+        //}
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> All([FromQuery] AllTeamsQueryModel query)
+        {
+            var model = await teamService.AllSortingAsync(query.SearchTerm, query.Sorting, query.CurrentPage, query.TeamsPerPage);
+
+            query.TotalTeamsCount = model.TotalTeamsCount;
+            query.Teams = model.Teams;
+
+            return View(query);
         }
 
         public async Task<IActionResult> Details(int Id)

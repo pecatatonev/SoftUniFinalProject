@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Models.Event;
 using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.Models;
+using SoftUniFinalProject.Infrastructure.Enumerations;
 
 namespace SoftUniFinalProject.Core.Services.TeamService
 {
@@ -18,6 +20,53 @@ namespace SoftUniFinalProject.Core.Services.TeamService
             repository = _repository;
             logger = _logger;
         }
+
+        public async Task<TeamQueryServiceModel> AllSortingAsync(string? searchTerm = null, TeamSorting sorting = TeamSorting.NewestAdded, int currentPage = 1, int teamPerPage = 1)
+        {
+            //Nickname null option check later
+            var teamsToShow = repository.AllReadOnly<Team>();
+
+            if (searchTerm != null)
+            {
+                string normalizedSearch = searchTerm.ToLower();
+                teamsToShow = teamsToShow
+                    .Where(t => (t.Name.ToLower().Contains(normalizedSearch) ||
+                    t.ManagerName.ToLower().Contains(normalizedSearch) ||
+                    t.StadiumName.ToLower().Contains(normalizedSearch)));
+            }
+
+            teamsToShow = sorting switch
+            {
+                TeamSorting.CapacityStadium => teamsToShow.OrderBy(t => t.StadiumCapacity),
+                TeamSorting.Oldest => teamsToShow.OrderBy(t => t.YearOfCreation),
+                _ => teamsToShow.OrderByDescending(t => t.Id)
+            };
+
+            var teams = await teamsToShow
+                .Skip((currentPage - 1) * teamPerPage)
+                .Take(teamPerPage)
+                .Select(e => new TeamsAllViewModel()
+                {
+                    Id = e.Id,
+                    ImageUrl = e.ImageUrl,
+                    ManagerName = e.ManagerName,
+                    Name = e.Name,
+                    Nickname = e.Nickname,
+                    StadiumCapacity = e.StadiumCapacity,
+                    StadiumName = e.StadiumName,
+                    YearOfCreation = e.YearOfCreation,
+                })
+                .ToListAsync();
+
+            int totalEvents = await teamsToShow.CountAsync();
+
+            return new TeamQueryServiceModel()
+            {
+                Teams = teams,
+                TotalTeamsCount = totalEvents
+            };
+        }
+
         public async Task<IEnumerable<TeamsAllViewModel>> AllTeamsAsync()
         {
             //Nickname null option check later
@@ -27,7 +76,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     Id = t.Id,
                     Name = t.Name,
                     StadiumCapacity = t.StadiumCapacity,
-                    YearCreated = t.YearOfCreation,
+                    YearOfCreation = t.YearOfCreation,
                     ImageUrl = t.ImageUrl,
                     StadiumName = t.Name,
                     Nickname = t.Nickname,
@@ -88,7 +137,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     Id = t.Id,
                     Name = t.Name,
                     StadiumCapacity = t.StadiumCapacity,
-                    YearCreated = t.YearOfCreation,
+                    YearOfCreation = t.YearOfCreation,
                     ImageUrl = t.ImageUrl,
                     StadiumName = t.Name,
                     Nickname = t.Nickname,
