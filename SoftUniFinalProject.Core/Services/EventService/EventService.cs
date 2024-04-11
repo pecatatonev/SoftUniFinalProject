@@ -29,21 +29,6 @@ namespace SoftUniFinalProject.Core.Services.EventService
             repository = _repository;
             logger = _logger;
         }
-        public async Task<IEnumerable<EventAllViewModel>> AllEventsAsync()
-        {
-            return await repository.AllReadOnly<Event>()
-                .Select(e => new EventAllViewModel()
-                {
-                    Id = e.Id,
-                    Description = e.Description,
-                    Location = e.Location,
-                    Name = e.Name,
-                    StartOn = e.StartOn.ToString(DataConstants.DateTimeFormat),
-                    FootballGameId = e.FootballGameId,
-                    Organiser = e.Organiser.UserName,
-                })
-                .ToListAsync();
-        }
 
         public async Task<EventQueryServiceModel> AllSortingAsync(string? searchTerm = null, 
             EventSorting sorting = EventSorting.Soonest,

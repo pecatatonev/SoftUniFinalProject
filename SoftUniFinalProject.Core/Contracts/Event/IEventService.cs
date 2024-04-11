@@ -6,7 +6,6 @@ namespace SoftUniFinalProject.Core.Contracts.Event
 {
     public interface IEventService
     {
-        Task<IEnumerable<EventAllViewModel>> AllEventsAsync();
         Task<EventQueryServiceModel> AllSortingAsync(string? searchTerm = null,
             EventSorting sorting = EventSorting.Soonest,
             int currentPage = 1,
