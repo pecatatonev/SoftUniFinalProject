@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Infrastructure.Constants;
+using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,9 +24,9 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         [Comment("Event to comment")]
         public Event Event { get; set; } = null!;
         [Comment("Creator of the comment Identifier")]
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
         [ForeignKey(nameof(UserId))]
         [Comment("Creator of the comment")]
-        public IdentityUser User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
     }
 }

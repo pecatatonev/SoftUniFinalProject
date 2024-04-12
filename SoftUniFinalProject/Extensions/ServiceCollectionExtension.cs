@@ -12,6 +12,7 @@ using SoftUniFinalProject.Core.Services.HomeService;
 using SoftUniFinalProject.Core.Services.TeamService;
 using SoftUniFinalProject.Infrastructure.Data;
 using SoftUniFinalProject.Infrastructure.Data.Common;
+using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -48,7 +49,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
            services
-                .AddDefaultIdentity<IdentityUser>(options =>
+                .AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
                     options.SignIn.RequireConfirmedEmail = false;
@@ -56,8 +57,13 @@ namespace Microsoft.Extensions.DependencyInjection
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 6;
                 })
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<FootballEventDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/User/Login";
+            });
             return services;
         }
     }
