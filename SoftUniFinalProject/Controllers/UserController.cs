@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Execution;
+using Microsoft.EntityFrameworkCore;
+using SoftUniFinalProject.Core.Contracts.Admin.Identity;
+using SoftUniFinalProject.Core.Models.Admin;
 using SoftUniFinalProject.Core.Models.Identity;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
+using System.Runtime.CompilerServices;
 
 namespace SoftUniFinalProject.Controllers
 {
@@ -13,17 +18,20 @@ namespace SoftUniFinalProject.Controllers
         private readonly UserManager<ApplicationUser> userManager;
 
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IUserService userService;
 
         public UserController(
             UserManager<ApplicationUser> _userManager,
             SignInManager<ApplicationUser> _signInManager,
-            RoleManager<ApplicationRole> _roleManager)
+            RoleManager<ApplicationRole> _roleManager,
+            IUserService _userService)
         {
             userManager = _userManager;
             signInManager = _signInManager;
             roleManager = _roleManager;
+            userService = _userService;
         }
-
+        //CHECK REDIRRECTION
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
@@ -117,20 +125,67 @@ namespace SoftUniFinalProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [AllowAnonymous]
-        public async Task<IActionResult> AddRole(string roleName)
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> AddRole()
         {
-            if (await roleManager.RoleExistsAsync(roleName) == false)
-            {
-                var role = new ApplicationRole()
-                {
-                    Name = roleName,
-                    NormalizedName = roleName.ToUpper()
-                };
+            var model = new RoleAddViewModel();
 
-                await roleManager.CreateAsync(role);
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> AddRole(RoleAddViewModel model)
+        {
+            if (await roleManager.RoleExistsAsync(model.RoleName) == false)
+            {
+                await roleManager.CreateAsync(userService.RoleCreate(model.RoleName));
             }
             
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> AddUserToRole()
+        {
+            var model = new UserToRoleAddViewModel()
+            {
+                Users = await userManager.Users.Select(u => new UsersViewModel()
+                {
+                    UserId = u.Id,
+                    UserName = u.UserName,
+                })
+                .ToListAsync(),
+                Roles = await roleManager.Roles.Select(x =>new RoleListViewModel()
+                {
+                    RoleId = x.Id,
+                    RoleName = x.Name,
+                }).ToListAsync(),
+            };
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> AddUserToRole(UserToRoleAddViewModel model) 
+        {
+            var role =await roleManager.Roles.FirstOrDefaultAsync(x => x.Id == model.RoleId);
+
+            if (await roleManager.RoleExistsAsync(role.Name)) 
+            {
+                var user = await userManager.FindByIdAsync(model.UserId);
+
+                if (user != null)
+                {
+                    if (await userManager.IsInRoleAsync(user, role.Name) == false)
+                    {
+                        await userManager.AddToRoleAsync(user, role.Name);
+                    }
+                }
+            }
+
             return RedirectToAction("Index", "Home");
         }
     }

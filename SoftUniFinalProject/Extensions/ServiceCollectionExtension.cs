@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SoftUniFinalProject.Core.Contracts.Admin.Identity;
 using SoftUniFinalProject.Core.Contracts.Attendance;
 using SoftUniFinalProject.Core.Contracts.Comment;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Contracts.Home;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Services.Admin.UserService;
 using SoftUniFinalProject.Core.Services.AttendanceService;
 using SoftUniFinalProject.Core.Services.CommentService;
 using SoftUniFinalProject.Core.Services.EventService;
@@ -28,6 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
             service.AddScoped<IFootballGameService, FootballGameService>();
             service.AddScoped<IAttendanceService, AttendanceService>();
             service.AddScoped<ICommentService, CommentService>();
+            service.AddScoped<IUserService, UserService >();
 
             service.AddTransient<IHomeService, HomeService>();
 
