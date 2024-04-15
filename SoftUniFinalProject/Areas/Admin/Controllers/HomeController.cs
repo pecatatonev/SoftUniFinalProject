@@ -31,15 +31,25 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
             return View(users);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AddRole()
+        {
+            var model = new RoleAddViewModel();
+
+            return View(model);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddRole(RoleAddViewModel model)
         {
             if (await roleManager.RoleExistsAsync(model.RoleName) == false)
             {
-                await roleManager.CreateAsync(userService.RoleCreate(model.RoleName));
+                return StatusCode(500);
             }
 
-            return RedirectToAction("Index", "Home");
+            await roleManager.CreateAsync(userService.RoleCreate(model.RoleName));
+
+            return RedirectToAction(nameof(Users));
         }
 
         [HttpGet]
@@ -80,12 +90,18 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Users));
         }
 
         public async Task<IActionResult> Delete(string id)
         {
-            var user =await userManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return StatusCode(404);
+               
+            }
+
             await userManager.DeleteAsync(user);
             return RedirectToAction(nameof(Users));
         }
