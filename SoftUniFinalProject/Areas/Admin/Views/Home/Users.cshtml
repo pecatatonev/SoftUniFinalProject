@@ -1,4 +1,5 @@
-﻿@*
+﻿@model List<SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -7,3 +8,50 @@
 
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+        <div class="col">
+
+            <div class="row flex-lg-nowrap">
+                <div class="col mb-3">
+                    <div class="e-panel card">
+                        <div class="card-body">
+                            <div class="e-table">
+                                <div class="table-responsive table-lg mt-3">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="max-width">Name</th>
+                                                <th>Username</th>
+                                                <th>Delete User</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var user in Model)
+                                            {
+                                            if (this.User?.Identity?.Name == user.UserName)
+                                            {
+                                                continue;
+                                            }
+                                            <tr>
+                                                <td class="text-nowrap align-middle">@user.FirstName @user.LastName</td>
+                                                <td class="text-nowrap align-middle"><span>@user.UserName</span></td>
+                                                <td class="text-nowrap align-middle">Admin</td>
+                                                <td class="text-center align-middle">
+                                                    <div class="btn-group align-top">
+                                                        <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger btn-outline-secondary badge"><i class="fa fa-trash"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            }
+                                       </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
