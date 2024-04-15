@@ -1,0 +1,50 @@
+﻿@model SoftUniFinalProject.Core.Models.Event.AddEventViewModel;
+@{
+    ViewBag.Title = "Edit Event";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.Name"></label>
+                <input asp-for="@Model.Name" class="form-control" placeholder="Event Name">
+                <span asp-validation-for="@Model.Name" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Description"></label>
+                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="5"></textarea>
+                <span asp-validation-for="@Model.Description" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Location"></label>
+                <input asp-for="@Model.Location" rows="4" class="form-control" placeholder="Location of the Event">
+                <span asp-validation-for="@Model.Location" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.StartOn" class="form-label-add-edit">Starting of the event</label>
+                <input asp-for="@Model.StartOn" class="form-control" aria-required="true" placeholder="@SoftUniFinalProject.Infrastructure.Constants.DataConstants.DateTimeFormat" )" />
+                <span asp-validation-for="@Model.StartOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FootballGameId">Football Games</label>
+                <select asp-for="FootballGameId" class="form-control">
+                    @foreach (var footballGame in Model.FootballGames)
+                    {
+                        <option value="@footballGame.Id">@footballGame.HomeTeamName vs @footballGame.AwayTeamName</option>
+                    }
+                </select> <span asp-validation-for="@Model.FootballGameId" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

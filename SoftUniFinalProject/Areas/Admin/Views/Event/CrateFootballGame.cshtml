@@ -1,0 +1,54 @@
+﻿@model SoftUniFinalProject.Core.Models.Event.AddFootballGameViewModel;
+@{
+    ViewBag.Title = "Create Football Game";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.PlayingFor"></label>
+                <input asp-for="@Model.PlayingFor" class="form-control" placeholder="Type game(cup, league, etc.)">
+                <span asp-validation-for="@Model.PlayingFor" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HomeTeamId">Home Team</label>
+                <select asp-for="HomeTeamId" class="form-control">
+                    @foreach (var hometeam in Model.HomeTeams)
+                    {
+                        <option value="@hometeam.Id">@hometeam.Name</option>
+                    }
+                </select> <span asp-validation-for="@Model.HomeTeamId" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AwayTeamId">Away Team</label>
+                <select asp-for="AwayTeamId" class="form-control">
+                    @foreach (var hometeam in Model.AwayTeams)
+                    {
+                        <option value="@hometeam.Id">@hometeam.Name</option>
+                    }
+                </select> <span asp-validation-for="@Model.AwayTeamId" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.RefereeName"></label>
+                <input asp-for="@Model.RefereeName" rows="4" class="form-control" placeholder="Referee Name">
+                <span asp-validation-for="@Model.RefereeName" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.StartGame" class="form-label-add-edit">Starting of the game</label>
+                <input asp-for="@Model.StartGame" class="form-control" aria-required="true" placeholder="@SoftUniFinalProject.Infrastructure.Constants.DataConstants.DateTimeFormat" )" />
+                <span asp-validation-for="@Model.StartGame" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
