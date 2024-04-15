@@ -32,7 +32,7 @@ namespace SoftUniFinalProject.Controllers
             roleManager = _roleManager;
             userService = _userService;
         }
-        //CHECK REDIRRECTION
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
@@ -139,59 +139,5 @@ namespace SoftUniFinalProject.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> AddRole(RoleAddViewModel model)
-        {
-            if (await roleManager.RoleExistsAsync(model.RoleName) == false)
-            {
-                await roleManager.CreateAsync(userService.RoleCreate(model.RoleName));
-            }
-            
-            return RedirectToAction("Index", "Home");
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> AddUserToRole()
-        {
-            var model = new UserToRoleAddViewModel()
-            {
-                Users = await userManager.Users.Select(u => new UsersViewModel()
-                {
-                    UserId = u.Id,
-                    UserName = u.UserName,
-                })
-                .ToListAsync(),
-                Roles = await roleManager.Roles.Select(x =>new RoleListViewModel()
-                {
-                    RoleId = x.Id,
-                    RoleName = x.Name,
-                }).ToListAsync(),
-            };
-
-            return View(model);
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> AddUserToRole(UserToRoleAddViewModel model) 
-        {
-            var role =await roleManager.Roles.FirstOrDefaultAsync(x => x.Id == model.RoleId);
-
-            if (await roleManager.RoleExistsAsync(role.Name)) 
-            {
-                var user = await userManager.FindByIdAsync(model.UserId);
-
-                if (user != null)
-                {
-                    if (await userManager.IsInRoleAsync(user, role.Name) == false)
-                    {
-                        await userManager.AddToRoleAsync(user, role.Name);
-                    }
-                }
-            }
-
-            return RedirectToAction("Index", "Home");
-        }
     }
 }
