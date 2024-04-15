@@ -40,7 +40,7 @@ namespace SoftUniFinalProject.Controllers
 
             if (model == null) 
             {
-                return BadRequest();
+                return NotFound();
             }
 
             return View(model);

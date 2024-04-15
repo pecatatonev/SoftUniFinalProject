@@ -25,6 +25,10 @@ namespace SoftUniFinalProject.Controllers
         {
             ViewBag.Id = Id;
             var model = await commentService.GetAllCommentsForEventAsync(Id);
+            if (model == null)
+            {
+                return StatusCode(400);
+            }
             return View(model);
         }
 
