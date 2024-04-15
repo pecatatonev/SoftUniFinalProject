@@ -14,5 +14,7 @@ namespace SoftUniFinalProject.Core.Contracts.Event
         Task<IEnumerable<FootballGameToAddViewModel>> GetAllFootballGamesAsync();
 
         Task<bool> FootballGameExistAsync(int sponsorId);
+
+        Task<int> CreateAsync(AddFootballGameViewModel model);
     }
 }
