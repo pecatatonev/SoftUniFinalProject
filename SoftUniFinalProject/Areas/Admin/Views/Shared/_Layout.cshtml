@@ -26,18 +26,13 @@
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Users">All Users</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="All">All Events</a>
-                            </li>
-                            //This only administators can have access to it
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Create">Create Event</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Event" asp-action="Create">Create Event</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="All">All Teams</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Team" asp-action="Create">Create Team</a>
                             </li>
-                            //This only administators can have access to it
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Create">Create Team</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Event" asp-action="CrateFootballGame">Create Football Team</a>
                             </li>
                         }
                     </ul>
