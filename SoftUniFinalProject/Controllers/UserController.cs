@@ -8,6 +8,7 @@ using SoftUniFinalProject.Core.Models.Admin;
 using SoftUniFinalProject.Core.Models.Identity;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using System.Runtime.CompilerServices;
+using static SoftUniFinalProject.Core.Constants.RoleConstants;
 
 namespace SoftUniFinalProject.Controllers
 {
@@ -109,6 +110,10 @@ namespace SoftUniFinalProject.Controllers
 
                 if (result.Succeeded)
                 {
+                    if (await userManager.IsInRoleAsync(user, AdministratorRole))
+                    {
+                        return RedirectToAction("Users", "Home", new { area = "Admin" });
+                    }
                     return RedirectToAction("Index", "Home");
                 }
             }
