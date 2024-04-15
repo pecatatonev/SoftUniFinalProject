@@ -129,15 +129,5 @@ namespace SoftUniFinalProject.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-        [HttpGet]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> AddRole()
-        {
-            var model = new RoleAddViewModel();
-
-            return View(model);
-        }
-
     }
 }

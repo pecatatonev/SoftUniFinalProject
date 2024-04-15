@@ -45,32 +45,5 @@ namespace SoftUniFinalProject.Controllers
 
             return View(model);
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            //Only Admin can create team later check
-            var model = new AddTeamViewModel()
-            {
-                Sponsors = await sponsorService.AllSponsorsToAddAsync(),
-            };
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(AddTeamViewModel model) 
-        {
-            if (!ModelState.IsValid)
-            {
-                model.Sponsors = await sponsorService.AllSponsorsToAddAsync();
-
-                return View(model);
-            }
-
-            int teamId = await teamService.CreateAsync(model);
-
-            return RedirectToAction(nameof(Details), new { id = teamId});
-        }
     }
 }
