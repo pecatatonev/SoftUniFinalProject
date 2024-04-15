@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Admin.Identity;
 using SoftUniFinalProject.Core.Contracts.Attendance;
@@ -33,6 +34,12 @@ namespace Microsoft.Extensions.DependencyInjection
             service.AddScoped<IUserService, UserService >();
 
             service.AddTransient<IHomeService, HomeService>();
+
+
+            service.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
 
             return service;
         }

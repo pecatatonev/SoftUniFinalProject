@@ -12,11 +12,6 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplicationServices();
 
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
-});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
