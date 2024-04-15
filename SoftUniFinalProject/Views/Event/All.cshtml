@@ -1,4 +1,5 @@
 ﻿@model SoftUniFinalProject.Core.Models.Event.AllEventsQueryModel
+@using static SoftUniFinalProject.Core.Constants.RoleConstants;
 @{ 
      ViewBag.Title = "All Events"; 
 }
@@ -23,6 +24,10 @@
         <div class="col-md-3"> 
                 <div class="form-group mt-4 p-2"> 
                     <input type="submit" value="Search" class="btn btn-primary" />
+                    @if(User.IsInRole(AdministratorRole))
+                    {
+                    <a class="btn btn-primary" asp-action="Create" asp-area="Admin" asp-controller="Event">Create Event</a>
+                    }
                 </div> 
         </div> 
     </div> 

@@ -1,4 +1,5 @@
 ﻿@model SoftUniFinalProject.Core.Models.Team.AllTeamsQueryModel
+@using static SoftUniFinalProject.Core.Constants.RoleConstants;
 @{ 
      ViewBag.Title = "All Teams"; 
 }
@@ -9,9 +10,9 @@
     <p class="lead"> Here you can view all our teams. </p>
     <hr class="my-4">
     <p class="lead">
-        @if (User?.Identity?.IsAuthenticated ?? false)
+        @if (User.IsInRole(AdministratorRole))
         {
-            <a asp-controller="Team" asp-action="Create" class="btn btn-primary btn-lg" role="button">Add Team</a>
+            <a asp-area="Admin" asp-controller="Team" asp-action="Create" class="btn btn-primary btn-lg" role="button">Add Team</a>
         }
     </p>
 </div>
