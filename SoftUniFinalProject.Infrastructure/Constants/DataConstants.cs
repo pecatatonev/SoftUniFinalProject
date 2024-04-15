@@ -71,6 +71,9 @@ namespace SoftUniFinalProject.Infrastructure.Constants
         {
             public const int RefereeNameMaxLenght = 50;
             public const int RefereeNameMinLenght = 1;
+
+            public const int PlayingForMaxLenght = 60;
+            public const int PlayingForMinLenght = 1;
         }
 
         public static class Event
