@@ -41,5 +41,39 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
 
             return RedirectToAction("Details", "Team",  new { area = "", id = teamId });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AllSponsors()
+        {
+               var sponsors = await sponsorService.AllSponsorsAsync();
+
+            return View(sponsors);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateSponsor()
+        {
+            var model = new CreateSponsorViewModel()
+            {
+                Teams = await teamService.GetAllTeamsForSponsorAsync(),
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSponsor(CreateSponsorViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Teams = await teamService.GetAllTeamsForSponsorAsync();
+
+                return View(model);
+            }
+
+            int teamId = await sponsorService.CreateAsync(model);
+
+            return RedirectToAction(nameof(AllSponsors));
+        }
     }
+    
 }
