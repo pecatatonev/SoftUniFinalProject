@@ -27,7 +27,7 @@ namespace SoftUniFinalProject.Controllers
             }
             else
             {
-                return BadRequest("Already joined event");
+                return StatusCode(404, "Already joined the event");
             }
         }
 
@@ -42,7 +42,7 @@ namespace SoftUniFinalProject.Controllers
             }
             else
             {
-                return BadRequest("Not joined event");
+                return StatusCode(404,"Not joined event");
             }
         }
 
