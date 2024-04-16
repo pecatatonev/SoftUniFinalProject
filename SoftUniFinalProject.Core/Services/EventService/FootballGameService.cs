@@ -72,6 +72,29 @@ namespace SoftUniFinalProject.Core.Services.EventService
             return footballGame.Id;
         }
 
+        public async Task<int> DeleteFinishedGamesAsync()
+        {
+            var footballGames =await repository.All<FootballGame>().ToListAsync();
+            var dateNow = DateTime.Now;
+            int countDeleted = 0;
+            if (footballGames == null)
+            {
+                return 0;
+            }
+            foreach (var fb in footballGames)
+            {
+                if (fb.StartGame < dateNow)
+                {
+                    repository.Delete(fb);
+                    countDeleted++;
+                }
+            }
+
+            await repository.SaveChangesAsync();
+
+            return countDeleted;
+        }
+
         public async Task<bool> FootballGameExistAsync(int footballGameId)
         {
             return await repository.AllReadOnly<FootballGame>()
@@ -88,6 +111,20 @@ namespace SoftUniFinalProject.Core.Services.EventService
                     HomeTeamName = x.HomeTeam.Name,
                 })
                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<FootballGameAllViewModel>> GetAllFootballGamesInAdminAsync()
+        {
+            return await repository.AllReadOnly<FootballGame>()
+                .Select(x => new FootballGameAllViewModel()
+                {
+                    Id = x.Id,
+                    RefereeName = x.RefereeName,
+                    PlayingFor = x.PlayingFor,
+                    StartGame = x.StartGame.ToString(DataConstants.DateTimeFormat),
+                    AwayTeamName = x.AwayTeam.Name,
+                    HomeTeamName= x.HomeTeam.Name,
+                }).ToListAsync();
         }
 
         public async Task<FootballGameViewModel> GetFootballDetailsAsync(int Id)
@@ -107,6 +144,9 @@ namespace SoftUniFinalProject.Core.Services.EventService
                }).FirstOrDefaultAsync();
         }
 
-
+        public async Task<FootballGame> GetFootballGameById(int Id)
+        {
+            return await repository.GetByIdAsync<FootballGame>(Id);
+        }
     }
 }
