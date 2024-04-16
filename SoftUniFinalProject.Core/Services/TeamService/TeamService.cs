@@ -137,5 +137,16 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                 })
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<AddTeamToSponsorViewModel>> GetAllTeamsForSponsorAsync()
+        {
+            return await repository.AllReadOnly<Team>()
+                .Select(t => new AddTeamToSponsorViewModel()
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                })
+                .ToListAsync();
+        }
     }
 }

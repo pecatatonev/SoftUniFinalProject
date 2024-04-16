@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Constants;
@@ -10,10 +11,12 @@ namespace SoftUniFinalProject.Core.Services.TeamService
     public class SponsorService : ISponsorService
     {
         private readonly IRepository repository;
+        private readonly ILogger<SponsorService> logger;
 
-        public SponsorService(IRepository _repository)
+        public SponsorService(IRepository _repository, ILogger<SponsorService> _logger)
         {
             repository = _repository;
+            logger = _logger;
         }
 
         public async Task<IEnumerable<SponsorServiceViewModel>> AllSponsorsAsync()
@@ -58,6 +61,46 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     NetWorthInBillion = s.NetWorthInBillion,
                     YearCreated = s.YearCreation
                 }).ToListAsync();
+        }
+
+        public async Task<int> CreateAsync(CreateSponsorViewModel model)
+        {
+            if (await repository.AlreadyExistAsync<Sponsor>(t => t.Name == model.Name))
+            {
+                throw new ApplicationException("Sponsor already exists");
+            }
+
+            Sponsor sponsor = new Sponsor()
+            {
+               Name= model.Name,
+               ImageUrl= model.ImageUrl,
+               NetWorthInBillion= model.NetWorthInBillion,
+               YearCreation= model.YearCreation
+            };
+
+            foreach (var teamId in model.SelectedTeams)
+            {
+                TeamSponsor teamSponsor = new TeamSponsor()
+                {
+                    TeamId = teamId,
+                    SponsorId = sponsor.Id
+                };
+                sponsor.TeamsSponsors.Add(teamSponsor);
+            }
+
+            try
+            {
+                await repository.AddAsync(sponsor);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(nameof(CreateAsync), ex);
+                throw new ApplicationException("Database failed to save info", ex);
+            }
+
+
+            return sponsor.Id;
         }
     }
 }
