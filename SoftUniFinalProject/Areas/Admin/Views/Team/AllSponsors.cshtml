@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SoftUniFinalProject.Core.Models.Team.SponsorServiceViewModel>
+@{
+    ViewData["Title"] = "All Sponsors ";
+    var sponsors = Model.ToList();
+}
+
+<div class="align-items-center">
+<a asp-area="Admin" asp-controller="Team" asp-action="CreateSponsor" class="btn btn-primary">Create Sponsor</a>
+</div>
+@if (!sponsors.Any())
+{
+    <div class="mt-4 p-5 bg-light">
+        <h1 class="display-4">Welcome to the sponsor page.</h1>
+        <hr class="my-4">
+        <p class="lead">
+        </p>
+    </div>
+}
+<div class="card-group">
+    @foreach (var sponsor in sponsors)
+    {
+        <div class="card">
+            <img class="card-img-fluid" src="@sponsor.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@sponsor.Name</h5>
+                <p class="card-text">@sponsor.NetWorthInBillion</p>
+                <p class="card-text"><small class="text-muted">@sponsor.YearCreated</small></p>
+            </div>
+        </div>
+    }
+</div>

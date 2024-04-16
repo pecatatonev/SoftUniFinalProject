@@ -9,6 +9,7 @@ using SoftUniFinalProject.Core.Services.EventService;
 using SoftUniFinalProject.Extensions;
 using SoftUniFinalProject.Infrastructure.Constants;
 using System.Globalization;
+using static SoftUniFinalProject.Core.Constants.RoleConstants;
 
 namespace SoftUniFinalProject.Controllers
 {
@@ -25,6 +26,10 @@ namespace SoftUniFinalProject.Controllers
         {
             ViewBag.Id = Id;
             var model = await commentService.GetAllCommentsForEventAsync(Id);
+            if (model == null)
+            {
+                return StatusCode(404);
+            }
             return View(model);
         }
 
@@ -112,7 +117,7 @@ namespace SoftUniFinalProject.Controllers
                 return RedirectToAction(nameof(All), new { Id = eventId });
             }
 
-            if (await commentService.SameUserAsync(Id, User.Id()) == false)
+            if (await commentService.SameUserAsync(Id, User.Id()) == false && !User.IsInRole(AdministratorRole))
             {
                 return RedirectToAction(nameof(All), new { Id = eventId });
             };
@@ -137,8 +142,7 @@ namespace SoftUniFinalProject.Controllers
                 return RedirectToAction(nameof(All), new { Id = model.EventId });
             }
 
-            //later admin or organiser
-            if (await commentService.SameUserAsync(Id, User.Id()) == false)
+            if (await commentService.SameUserAsync(Id, User.Id()) == false && !User.IsInRole(AdministratorRole))
             {
                 return RedirectToAction(nameof(All), new { Id = model.EventId });
             };

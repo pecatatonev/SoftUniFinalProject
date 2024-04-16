@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - FootballEvent</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Error500.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SoftUniFinalProject.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -24,16 +25,8 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="All">All Events</a>
                             </li>
-                            //This only administators can have access to it
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Create">Create Event</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="All">All Teams</a>
-                            </li>
-                            //This only administators can have access to it
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Create">Create Team</a>
                             </li>
                         }
                         else

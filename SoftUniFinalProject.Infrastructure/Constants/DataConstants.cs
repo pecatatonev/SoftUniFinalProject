@@ -13,6 +13,20 @@ namespace SoftUniFinalProject.Infrastructure.Constants
         public const string LenghtIntegerMessage = "The {0} field must be between {1} and {2}.";
         public const string RequiredMessage = "The {0} field is required.";
 
+        public static class ApplicationUser 
+        {
+            public const int FirstNameMaxLenght = 40;
+            public const int FirstNameMinLenght = 3;
+            public const int LastNameMaxLenght = 40;
+            public const int LastNameMinLenght = 3;
+            public const int UserNameMaxLenght = 50;
+            public const int UserNameMinLenght = 2;
+            public const int EmailMaxLenght = 60;
+            public const int EmailMinLenght = 10;
+            public const int PasswordMaxLenght = 30;
+            public const int PasswordMinLenght = 5;
+        }
+
         public static class ContactForm
         {
             public const string RequiredEmail = "Please enter your email.";
@@ -57,6 +71,9 @@ namespace SoftUniFinalProject.Infrastructure.Constants
         {
             public const int RefereeNameMaxLenght = 50;
             public const int RefereeNameMinLenght = 1;
+
+            public const int PlayingForMaxLenght = 60;
+            public const int PlayingForMinLenght = 1;
         }
 
         public static class Event

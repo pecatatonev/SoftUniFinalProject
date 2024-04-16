@@ -17,37 +17,10 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.27")
+                .HasAnnotation("ProductVersion", "6.0.28")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -72,105 +45,6 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec532e8a-1d7d-41c7-a94b-55346b8be363",
-                            Email = "guest@football.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "guest@football.com",
-                            NormalizedUserName = "guest@football.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBNgOoph0Ex271IrelIjC98YCXHk01953uDxX4ZXuxpdhAxI2VGpHnGG+9hes2/Ixw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "698c5f2b-0a9d-4182-a4af-13641e4d0560",
-                            TwoFactorEnabled = false,
-                            UserName = "guest@football.com"
-                        },
-                        new
-                        {
-                            Id = "dea12856-c198-4129-b3f3-b893d8395082",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "8ae72a01-2e1d-4909-a0b4-9c402e95e22c",
-                            Email = "host@football.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "host@football.com",
-                            NormalizedUserName = "host@football.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENSrotUitdidhDblGj10CQarHjWZJrPv+jtgDS1Hm1FSnPeDMnH+C6T9BFYZGqCX4A==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "f469b5a8-30fe-4f3e-b6d7-69db75e2c43b",
-                            TwoFactorEnabled = false,
-                            UserName = "host@football.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -258,6 +132,144 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5e5d8868-3cd4-454c-ad7c-a30ab4777667",
+                            Email = "guest@football.com",
+                            EmailConfirmed = false,
+                            FirstName = "Guest",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "guest@football.com",
+                            NormalizedUserName = "GUEST123",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFpwuRnXiCklmO0hkiuCbr1kg+acYuAK1U6Wd7urNTbKpDzyuv9BsIIKRaf3I/NjYQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "88796983-e4b6-4e9a-8c92-c71be1287cb8",
+                            TwoFactorEnabled = false,
+                            UserName = "guest123"
+                        },
+                        new
+                        {
+                            Id = "dea12856-c198-4129-b3f3-b893d8395082",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6c080021-fdb2-49df-a82a-9b553a94fc75",
+                            Email = "host@football.com",
+                            EmailConfirmed = false,
+                            FirstName = "Host",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "host@football.com",
+                            NormalizedUserName = "HOST3663",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGTrsEvNYr2Kxlq09Q6yZiH83CuBQsVhVJwfFF1wwRtelymRGMjfEDkoicVa7gmbhg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d17348ff-e302-481f-9bfc-775693f502e5",
+                            TwoFactorEnabled = false,
+                            UserName = "host3663"
+                        });
+                });
+
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -299,7 +311,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         {
                             Id = 1,
                             EventId = 1,
-                            PublicationTime = new DateTime(2024, 3, 18, 16, 2, 36, 483, DateTimeKind.Local).AddTicks(7462),
+                            PublicationTime = new DateTime(2024, 4, 16, 19, 49, 46, 714, DateTimeKind.Local).AddTicks(5775),
                             Text = "I can't wait for that derby",
                             UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
                         });
@@ -362,7 +374,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                             Location = "The Corner Cafe",
                             Name = "Biggest English Derby",
                             OrganiserId = "dea12856-c198-4129-b3f3-b893d8395082",
-                            StartOn = new DateTime(2024, 4, 14, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartOn = new DateTime(2024, 4, 20, 17, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -438,7 +450,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                             HomeTeamId = 1,
                             PlayingFor = "Premier League Game",
                             RefereeName = "Mike Dean",
-                            StartGame = new DateTime(2024, 4, 14, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartGame = new DateTime(2024, 4, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -598,7 +610,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -607,7 +619,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -616,7 +628,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -625,13 +637,13 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -640,7 +652,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -655,7 +667,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -669,12 +681,12 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.Event", b =>
                 {
                     b.HasOne("SoftUniFinalProject.Infrastructure.Data.Models.FootballGame", "FootballGame")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("FootballGameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Organiser")
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", "Organiser")
                         .WithMany()
                         .HasForeignKey("OrganiserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -693,7 +705,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("SoftUniFinalProject.Infrastructure.Data.IdentityModels.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -747,6 +759,11 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("EventParticipants");
+                });
+
+            modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.FootballGame", b =>
+                {
+                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("SoftUniFinalProject.Infrastructure.Data.Models.Sponsor", b =>

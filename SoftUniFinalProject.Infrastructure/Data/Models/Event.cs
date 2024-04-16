@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
@@ -32,7 +33,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
         public string OrganiserId { get; set; }
         [ForeignKey(nameof(OrganiserId))]
         [Comment("Organiser of the event")]
-        public IdentityUser Organiser { get; set; } = null!;
+        public ApplicationUser Organiser { get; set; } = null!;
         [Required]
         [Comment("Football game Identifier")]
         public int FootballGameId { get; set; }

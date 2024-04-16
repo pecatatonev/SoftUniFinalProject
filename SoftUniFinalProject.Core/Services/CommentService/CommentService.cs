@@ -53,6 +53,11 @@ namespace SoftUniFinalProject.Core.Services.CommentService
 
         public async Task<IEnumerable<CommentViewModel>> GetAllCommentsForEventAsync(int eventId)
         {
+            if (await repository.GetByIdAsync<Infrastructure.Data.Models.Event>(eventId) == null)
+            {
+                return null;
+            }
+
             return await repository.AllReadOnly<Infrastructure.Data.Models.Comment>()
                 .Where(c => c.EventId == eventId)
                 .Select(c => new CommentViewModel()

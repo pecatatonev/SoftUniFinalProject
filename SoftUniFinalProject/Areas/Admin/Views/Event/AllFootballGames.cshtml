@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SoftUniFinalProject.Core.Models.Event.FootballGameAllViewModel>
+@{
+    ViewData["Title"] = "All Football Games";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (Model.Count() == 0)
+{
+    <p>No football games for now. You can create one.</p>
+    <a asp-area="Admin" asp-controller="Event" asp-action="CrateFootballGame" class="btn btn-primary">Create Football Game</a>
+
+}
+else 
+{
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="col">
+        <a asp-area="Admin" asp-controller="Event" asp-action="CrateFootballGame" class="btn btn-primary">Create Football Game</a>
+        <a asp-area="Admin" asp-controller="Event" asp-action="CheckDate" class="btn btn-danger">Delete finished games </a>
+        <div class="row flex-lg-nowrap">
+            <div class="col mb-3">
+                <div class="e-panel card">
+                    <div class="card-body">
+                        <div class="e-table">
+                            <div class="table-responsive table-lg mt-3">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Home Team Name</th>
+                                            <th>Away Team Name</th>
+                                            <th>Referee Name</th>
+                                            <th>Starting Hour</th>
+                                            <th>Playing For</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var fb in Model)
+                                        {
+                                            <tr>
+                                                <td class="text-nowrap align-middle">@fb.Id</td>
+                                                <td class="text-nowrap align-middle">@fb.HomeTeamName</td>
+                                                <td class="text-nowrap align-middle">@fb.AwayTeamName</td>
+                                                <td class="text-nowrap align-middle"><span>@fb.RefereeName</span></td>
+                                                <td class="text-nowrap align-middle">@fb.StartGame</td>
+                                                <td class="text-nowrap align-middle">@fb.PlayingFor</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,7 +13,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.Models
     {
         public string UserId { get; set; } = string.Empty;
         [ForeignKey(nameof(UserId))]
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; } = null!;
         public int EventId { get; set; }
         [ForeignKey(nameof(EventId))]
         public Event Event { get; set; }

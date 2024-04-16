@@ -10,5 +10,7 @@ namespace SoftUniFinalProject.Core.Contracts.Team
 
         Task<IEnumerable<AddSponsorToTeamViewModel>> AllSponsorsToAddAsync();
         Task<bool> SponsorExistAsync(int sponsorId);
+
+        Task<int> CreateAsync(CreateSponsorViewModel model);
     }
 }

@@ -1,4 +1,5 @@
 ﻿@model SoftUniFinalProject.Core.Models.Event.EventAllViewModel
+@using static SoftUniFinalProject.Core.Constants.RoleConstants;
 
 <div class="card col-4" style="width: 20rem; ">
             <div class="card-body">
@@ -10,10 +11,10 @@
 
             <a asp-controller="Event" asp-action="DetailsGame" asp-route-id="@Model.FootballGameId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Details about the game</a>
             <a asp-controller="Comment" asp-action="All" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Comments</a>
-            @if (User?.Identity?.Name == Model.Organiser)
+            @if (User.IsInRole(AdministratorRole))
             {
-                <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
-                <a asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
+                <a asp-area="Admin" asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+                <a asp-area="Admin" asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Delete</a>
             }
             else
             {

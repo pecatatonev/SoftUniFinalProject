@@ -126,5 +126,27 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                 })
                 .FirstAsync();
         }
+
+        public async Task<IEnumerable<AddTeamToFootballGameViewModel>> GetAllTeamsAsync()
+        {
+            return await repository.AllReadOnly<Team>()
+                .Select(t => new AddTeamToFootballGameViewModel()
+                {
+                    Id=t.Id,
+                    Name=t.Name,
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<AddTeamToSponsorViewModel>> GetAllTeamsForSponsorAsync()
+        {
+            return await repository.AllReadOnly<Team>()
+                .Select(t => new AddTeamToSponsorViewModel()
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                })
+                .ToListAsync();
+        }
     }
 }

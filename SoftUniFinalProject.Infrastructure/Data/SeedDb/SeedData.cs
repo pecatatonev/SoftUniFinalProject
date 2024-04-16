@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using SoftUniFinalProject.Infrastructure.Data.Models;
 
 namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
 {
     internal class SeedData
     {
-        public IdentityUser HostUser { get; set; }
-        public IdentityUser GuestUser { get; set; }
-        public Sponsor AddidasSponsor { get; set; }
-        public Sponsor NikeSponsor { get; set; }
-        public Team ManchesterUnited { get; set; }
-        public Team Liverpool { get; set; }
-        public FootballGame ManUvsLiv { get; set; }
-        public Event WatchEnglishDerby { get; set; }
-        public Comment CommentGuest { get; set; }
+        public ApplicationUser HostUser { get; set; } = null!;
+        public ApplicationUser GuestUser { get; set; } = null!;
+        public Sponsor AddidasSponsor { get; set; } = null!;
+        public Sponsor NikeSponsor { get; set; } = null!;
+        public Team ManchesterUnited { get; set; } = null!;
+        public Team Liverpool { get; set; } = null!;
+        public FootballGame ManUvsLiv { get; set; } = null!;
+        public Event WatchEnglishDerby { get; set; } = null!;
+        public Comment CommentGuest { get; set; } = null!;
 
         public SeedData() 
         {
@@ -27,26 +28,30 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
 
         private void SeedUsers() 
         {
-            var hasher = new PasswordHasher<IdentityUser>();
+            var hasher = new PasswordHasher<ApplicationUser>();
 
-            HostUser = new IdentityUser()
+            HostUser = new ApplicationUser()
             {
                 Id = "dea12856-c198-4129-b3f3-b893d8395082",
-                UserName = "host@football.com",
-                NormalizedUserName = "host@football.com",
+                UserName = "host3663",
+                NormalizedUserName = "HOST3663",
                 Email = "host@football.com",
-                NormalizedEmail = "host@football.com"
+                NormalizedEmail = "host@football.com",
+                FirstName = "Host",
+                LastName = "User"
             };
 
             HostUser.PasswordHash = hasher.HashPassword(HostUser, "host123");
 
-            GuestUser = new IdentityUser()
+            GuestUser = new ApplicationUser()
             {
                 Id = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e",
-                UserName = "guest@football.com",
-                NormalizedUserName = "guest@football.com",
+                UserName = "guest123",
+                NormalizedUserName = "GUEST123",
                 Email = "guest@football.com",
-                NormalizedEmail = "guest@football.com"
+                NormalizedEmail = "guest@football.com",
+                FirstName = "Guest",
+                LastName = "User"
             };
 
             GuestUser.PasswordHash = hasher.HashPassword(GuestUser, "guest987");
@@ -106,10 +111,10 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 RefereeName = "Mike Dean",
-                StartGame =new DateTime(2024, 04, 14, 18, 0, 0), //"14.04.2024 18:00:00"
-                HomeTeamId = 1,
-                AwayTeamId = 2,
-                PlayingFor = "Premier League Game"
+                StartGame =new DateTime(2024, 04, 20, 18, 0, 0), //"20.04.2024 18:00:00"
+                HomeTeamId = ManchesterUnited.Id,
+                AwayTeamId = Liverpool.Id,
+                PlayingFor = "Premier League Game",
             };
         }
         private void SeedEvent() 
@@ -120,8 +125,8 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 Name = "Biggest English Derby",
                 Description = "This is oldest and biggest derby in England Premier League",
                 Location = "The Corner Cafe",
-                StartOn = new DateTime(2024, 04, 14, 17, 0, 0), //"14.04.2024 17:00:00"
-                FootballGameId = 1,
+                StartOn = new DateTime(2024, 04, 20, 17, 0, 0), //"20.04.2024 17:00:00"
+                FootballGameId = ManUvsLiv.Id,
                 OrganiserId = "dea12856-c198-4129-b3f3-b893d8395082",
             };
         }
@@ -132,7 +137,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 Id = 1,
                 Text = "I can't wait for that derby",
                 PublicationTime = DateTime.Now.AddHours(3),
-                EventId = 1,
+                EventId = WatchEnglishDerby.Id,
                 UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
             };
         }
