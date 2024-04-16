@@ -111,10 +111,10 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 RefereeName = "Mike Dean",
-                StartGame =new DateTime(2024, 04, 14, 18, 0, 0), //"14.04.2024 18:00:00"
+                StartGame =new DateTime(2024, 04, 20, 18, 0, 0), //"20.04.2024 18:00:00"
                 HomeTeamId = ManchesterUnited.Id,
                 AwayTeamId = Liverpool.Id,
-                PlayingFor = "Premier League Game"
+                PlayingFor = "Premier League Game",
             };
         }
         private void SeedEvent() 
@@ -125,7 +125,7 @@ namespace SoftUniFinalProject.Infrastructure.Data.SeedDb
                 Name = "Biggest English Derby",
                 Description = "This is oldest and biggest derby in England Premier League",
                 Location = "The Corner Cafe",
-                StartOn = new DateTime(2024, 04, 14, 17, 0, 0), //"14.04.2024 17:00:00"
+                StartOn = new DateTime(2024, 04, 20, 17, 0, 0), //"20.04.2024 17:00:00"
                 FootballGameId = ManUvsLiv.Id,
                 OrganiserId = "dea12856-c198-4129-b3f3-b893d8395082",
             };
