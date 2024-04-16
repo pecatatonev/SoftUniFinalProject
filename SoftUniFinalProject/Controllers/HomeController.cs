@@ -22,11 +22,9 @@ namespace SoftUniFinalProject.Controllers
             homeService = _homeService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var model = await eventService.LastThreeEvents();
-
-            return View(model);
+            return View();
         }
 
         public IActionResult About()
