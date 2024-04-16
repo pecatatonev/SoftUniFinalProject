@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Models.Event;
@@ -47,6 +48,10 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
                 ModelState.AddModelError(nameof(model.StartOn), $"Invalid Date! Format must be:{DataConstants.DateTimeFormat}");
             }
 
+            if (result == 500)
+            {
+                return StatusCode(500);
+            }
             if (!ModelState.IsValid)
             {
                 model.FootballGames = await footballGameService.GetAllFootballGamesAsync();
@@ -153,6 +158,13 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
             return RedirectToAction("All", "Event", new { area = "" });
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> AllFootballGames()
+        {
+            var footballGames = await footballGameService.GetAllFootballGamesInAdminAsync();
+            return View(footballGames);
+        }
         [HttpGet]
         public async Task<IActionResult> CrateFootballGame()
         {
@@ -189,6 +201,17 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
             }
 
             return RedirectToAction("All", "Event", new { area = "" });
+        }
+
+        public async Task<IActionResult> CheckDate()
+        {
+            var deletedFootballGames = await footballGameService.DeleteFinishedGamesAsync();
+
+            if (deletedFootballGames == 0) 
+            {
+                ModelState.AddModelError(nameof(deletedFootballGames), $"There is no football games at the momment!");
+            }
+            return RedirectToAction(nameof(AllFootballGames));
         }
     }
 }
