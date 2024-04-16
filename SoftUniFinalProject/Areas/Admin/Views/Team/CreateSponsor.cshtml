@@ -1,0 +1,53 @@
+﻿@model SoftUniFinalProject.Core.Models.Team.CreateSponsorViewModel;
+@{
+    ViewBag.Title = "Create Sponsor";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+       <form asp-action="CreateSponsor" method="post"> 
+            <div class="form-group">
+                <label asp-for="@Model.Name"></label>
+                <input asp-for="@Model.Name" class="form-control" placeholder="Sponsor Name">
+                <span asp-validation-for="@Model.Name" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ImageUrl"></label> 
+                <input asp-for="@Model.ImageUrl" class="form-control" placeholder="Your fine URL here...">
+                <span asp-validation-for="@Model.ImageUrl" class="small text-danger"></span>
+            </div> 
+            <div class="form-group">
+                <label asp-for="@Model.NetWorthInBillion"></label>
+                <input asp-for="@Model.NetWorthInBillion" class="form-control" placeholder="Net Worth In Billion">
+                <span asp-validation-for="@Model.NetWorthInBillion" class="small text-danger"></span>
+            </div> 
+            <div class="form-group">
+                <label asp-for="@Model.YearCreation"></label>
+                <input asp-for="@Model.YearCreation" class="form-control" placeholder="Creation Year of the Sponsor." />
+                <span asp-validation-for="@Model.YearCreation" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Sponsors</label>
+                @foreach (var team in Model.Teams)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="SelectedTeams" value="@team.Id" id="sponsor_@team.Id">
+                        <label class="form-check-label" for="sponsor_@team.Id">
+                            @team.Name
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
