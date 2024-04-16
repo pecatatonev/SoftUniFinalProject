@@ -191,20 +191,5 @@ namespace SoftUniFinalProject.Core.Services.EventService
                 })
                 .ToListAsync();
         }
-
-        public async Task<bool> SameOrganiserAsync(int eventId, string currentUserId)
-        {
-            bool result = false;
-            var Event = await repository.AllReadOnly<Event>()
-                .Where(e => e.Id == eventId)
-                .FirstOrDefaultAsync();
-
-            if (Event.OrganiserId == currentUserId)
-            {
-                result = true;
-            }
-
-            return result;
-        }
     }
 }

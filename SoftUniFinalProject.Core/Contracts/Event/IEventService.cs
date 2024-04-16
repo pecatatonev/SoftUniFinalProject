@@ -16,8 +16,6 @@ namespace SoftUniFinalProject.Core.Contracts.Event
         Task<Infrastructure.Data.Models.Event> EventByIdAsync(int id);
 
         Task<bool> ExistsAsync(int id);
-        
-        Task<bool> SameOrganiserAsync(int eventId, string currentUserId);
 
         Task<int> EditAsync(int eventId, AddEventViewModel model);
 
