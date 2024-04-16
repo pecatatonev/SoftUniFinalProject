@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftUniFinalProject.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using SoftUniFinalProject.Infrastructure.Data;
 namespace SoftUniFinalProject.Infrastructure.Migrations
 {
     [DbContext(typeof(FootballEventDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240416105812_AddingEventsCollection")]
+    partial class AddingEventsCollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,7 +238,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         {
                             Id = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5e5d8868-3cd4-454c-ad7c-a30ab4777667",
+                            ConcurrencyStamp = "3718c97b-13cc-4a12-b11c-a27bf55d426c",
                             Email = "guest@football.com",
                             EmailConfirmed = false,
                             FirstName = "Guest",
@@ -244,9 +246,9 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@football.com",
                             NormalizedUserName = "GUEST123",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFpwuRnXiCklmO0hkiuCbr1kg+acYuAK1U6Wd7urNTbKpDzyuv9BsIIKRaf3I/NjYQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECXOGxZtWT4eYcr7oFGlWVrMNBqV7ab6/5XXSk0bBksoh70PUTBZc05EO+Bwl8fYhg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "88796983-e4b6-4e9a-8c92-c71be1287cb8",
+                            SecurityStamp = "aa34da78-12f4-4765-b7df-86b37a393c4a",
                             TwoFactorEnabled = false,
                             UserName = "guest123"
                         },
@@ -254,7 +256,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6c080021-fdb2-49df-a82a-9b553a94fc75",
+                            ConcurrencyStamp = "6c58d049-4ef4-4d26-b328-8d1fc9ec384f",
                             Email = "host@football.com",
                             EmailConfirmed = false,
                             FirstName = "Host",
@@ -262,9 +264,9 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "host@football.com",
                             NormalizedUserName = "HOST3663",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGTrsEvNYr2Kxlq09Q6yZiH83CuBQsVhVJwfFF1wwRtelymRGMjfEDkoicVa7gmbhg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC5w/N/ViC94eu0ozaz56Hu9ThTSMOgDWhESWXiHiCQ7U4gWdrtkxOILWvg1DWn8ZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d17348ff-e302-481f-9bfc-775693f502e5",
+                            SecurityStamp = "5f074481-2dc1-4804-a699-0e4388ed0697",
                             TwoFactorEnabled = false,
                             UserName = "host3663"
                         });
@@ -311,7 +313,7 @@ namespace SoftUniFinalProject.Infrastructure.Migrations
                         {
                             Id = 1,
                             EventId = 1,
-                            PublicationTime = new DateTime(2024, 4, 16, 19, 49, 46, 714, DateTimeKind.Local).AddTicks(5775),
+                            PublicationTime = new DateTime(2024, 4, 16, 16, 58, 11, 842, DateTimeKind.Local).AddTicks(7742),
                             Text = "I can't wait for that derby",
                             UserId = "6d5800ce - d726 - 4fc8 - 83d9 - d6b3ac1f591e"
                         });
