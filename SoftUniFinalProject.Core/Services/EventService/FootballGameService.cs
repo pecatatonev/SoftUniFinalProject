@@ -18,11 +18,9 @@ namespace SoftUniFinalProject.Core.Services.EventService
     public class FootballGameService : IFootballGameService
     {
         private readonly IRepository repository;
-        private readonly ILogger<EventService> logger;
-        public FootballGameService(IRepository _repository, ILogger<EventService> _logger)
+        public FootballGameService(IRepository _repository)
         {
             repository = _repository;
-            logger = _logger;
         }
 
         public async Task<int> CreateAsync(AddFootballGameViewModel model)
@@ -64,7 +62,6 @@ namespace SoftUniFinalProject.Core.Services.EventService
             }
             catch (Exception ex)
             {
-                logger.LogError(nameof(CreateAsync), ex);
                 throw new ApplicationException("Database failed to save info", ex);
             }
 

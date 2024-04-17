@@ -53,7 +53,7 @@ namespace SoftUniFinalProject.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public async Task<IActionResult> Error(int statusCode)
+        public IActionResult Error(int statusCode)
         {
             if (statusCode == 404)
             {

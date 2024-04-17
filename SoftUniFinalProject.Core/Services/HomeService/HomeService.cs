@@ -51,8 +51,6 @@ namespace SoftUniFinalProject.Core.Services.HomeService
             }
             catch (Exception ex)
             {
-                // Обработка на грешката при изпращане на имейла
-                // Например логиране на грешката или обработка на изключението
                 throw new ApplicationException("Failed to send email", ex);
             }
 

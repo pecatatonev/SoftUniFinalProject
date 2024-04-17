@@ -13,12 +13,9 @@ namespace SoftUniFinalProject.Core.Services.TeamService
     public class TeamService : ITeamService
     {
         private readonly IRepository repository;
-
-        private readonly ILogger<TeamService> logger;
-        public TeamService(IRepository _repository, ILogger<TeamService> _logger)
+        public TeamService(IRepository _repository)
         {
             repository = _repository;
-            logger = _logger;
         }
 
         public async Task<TeamQueryServiceModel> AllSortingAsync(string? searchTerm = null, TeamSorting sorting = TeamSorting.NewestAdded, int currentPage = 1, int teamPerPage = 1)
@@ -101,7 +98,6 @@ namespace SoftUniFinalProject.Core.Services.TeamService
             }
             catch (Exception ex)
             {
-                logger.LogError(nameof(CreateAsync), ex);
                 throw new ApplicationException("Database failed to save info", ex);
             }
             
@@ -120,7 +116,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     StadiumCapacity = t.StadiumCapacity,
                     YearOfCreation = t.YearOfCreation,
                     ImageUrl = t.ImageUrl,
-                    StadiumName = t.Name,
+                    StadiumName = t.StadiumName,
                     Nickname = t.Nickname,
                     ManagerName = t.ManagerName,
                 })

@@ -11,12 +11,10 @@ namespace SoftUniFinalProject.Core.Services.TeamService
     public class SponsorService : ISponsorService
     {
         private readonly IRepository repository;
-        private readonly ILogger<SponsorService> logger;
 
-        public SponsorService(IRepository _repository, ILogger<SponsorService> _logger)
+        public SponsorService(IRepository _repository)
         {
             repository = _repository;
-            logger = _logger;
         }
 
         public async Task<IEnumerable<SponsorServiceViewModel>> AllSponsorsAsync()
@@ -95,7 +93,6 @@ namespace SoftUniFinalProject.Core.Services.TeamService
             }
             catch (Exception ex)
             {
-                logger.LogError(nameof(CreateAsync), ex);
                 throw new ApplicationException("Database failed to save info", ex);
             }
 
