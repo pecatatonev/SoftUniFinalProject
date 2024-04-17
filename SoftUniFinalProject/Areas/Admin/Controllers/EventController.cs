@@ -184,7 +184,7 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
 
             if (result == -1)
             {
-                ModelState.AddModelError(nameof(model.StartGame), $"Invalid Date! Format must be:{DataConstants.DateTimeFormat}");
+                ModelState.AddModelError(nameof(model.StartGame), $"Invalid Date! Format must be: {DataConstants.DateTimeFormat}");
             }
 
             if (result == -2)

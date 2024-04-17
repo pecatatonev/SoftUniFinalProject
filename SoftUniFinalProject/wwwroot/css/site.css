@@ -14,5 +14,28 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    color: #BD8B28;
+    background-color: #1E1E1E;
+}
+
+.bg-nav {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 62%, rgba(161,129,66,1) 100%);
+}
+
+.btn-style {
+    background-color: #BD8B28; 
+    color: white;
+}
+
+.footer-style {
+    bottom:0;
+    position:fixed;
+    width:100%;
+    height:50px;
+}
+
+.btn-danger:hover {
+    color: #1E1E1E;
 }
