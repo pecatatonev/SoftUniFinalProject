@@ -62,7 +62,7 @@ namespace SoftUniFinalProject.Core.Services.EventService
                     Location = e.Location,
                     Name = e.Name,
                     Organiser = e.Organiser.UserName,
-                    StartOn = e.StartOn.ToString(DataConstants.DateTimeFormat),
+                    StartOn = e.StartOn.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
                 })
                 .ToListAsync();
 

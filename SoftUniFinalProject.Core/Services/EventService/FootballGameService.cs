@@ -118,7 +118,7 @@ namespace SoftUniFinalProject.Core.Services.EventService
                     Id = x.Id,
                     RefereeName = x.RefereeName,
                     PlayingFor = x.PlayingFor,
-                    StartGame = x.StartGame.ToString(DataConstants.DateTimeFormat),
+                    StartGame = x.StartGame.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
                     AwayTeamName = x.AwayTeam.Name,
                     HomeTeamName= x.HomeTeam.Name,
                 }).ToListAsync();
@@ -132,7 +132,7 @@ namespace SoftUniFinalProject.Core.Services.EventService
                {
                     Id = fb.Id,
                     PlayingFor = fb.PlayingFor,
-                    StartGame = fb.StartGame.ToString(DataConstants.DateTimeFormat),
+                    StartGame = fb.StartGame.ToString(DataConstants.DateTimeFormat, CultureInfo.InvariantCulture),
                     RefereeName = fb.RefereeName,
                     AwayTeamName = fb.AwayTeam.Name,
                     HomeTeamName = fb.HomeTeam.Name,
