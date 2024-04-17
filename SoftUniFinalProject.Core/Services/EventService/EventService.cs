@@ -23,11 +23,9 @@ namespace SoftUniFinalProject.Core.Services.EventService
     {
         private readonly IRepository repository;
 
-        private readonly ILogger<EventService> logger;
-        public EventService(IRepository _repository, ILogger<EventService> _logger)
+        public EventService(IRepository _repository)
         {
             repository = _repository;
-            logger = _logger;
         }
 
         public async Task<EventQueryServiceModel> AllSortingAsync(string? searchTerm = null, 
@@ -120,7 +118,6 @@ namespace SoftUniFinalProject.Core.Services.EventService
             }
             catch (Exception ex)
             {
-                logger.LogError(nameof(CreateAsync), ex);
                 throw new ApplicationException("Database failed to save info", ex);
             }
 
@@ -133,11 +130,23 @@ namespace SoftUniFinalProject.Core.Services.EventService
             var eventToDelete = await repository.GetByIdAsync<Event>(eventId);
             var joinedUsers = repository.All<EventParticipant>(ep => ep.EventId == eventId);
             var comments = repository.All<Comment>(c => c.EventId == eventId);
-            repository.DeleteRange(joinedUsers);
-            repository.DeleteRange(comments);
-            repository.Delete(eventToDelete);
+            if (eventToDelete == null)
+            {
+                throw new NullReferenceException(nameof(eventToDelete));
+            }
+            try
+            {
+                repository.DeleteRange(joinedUsers);
+                repository.DeleteRange(comments);
+                repository.Delete(eventToDelete);
 
-            await repository.SaveChangesAsync();
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Database failed to save info", ex);
+            }
+            
         }
 
         public async Task<int> EditAsync(int eventId, AddEventViewModel model)
