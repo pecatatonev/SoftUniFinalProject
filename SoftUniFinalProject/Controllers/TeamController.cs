@@ -35,14 +35,20 @@ namespace SoftUniFinalProject.Controllers
         public async Task<IActionResult> Details(int Id)
         {
             var model = await teamService.GetTeamDetailsAsync(Id);
-
+            if (model == null)
+            {
+                return NotFound();
+            }
             return View(model);
         }
 
         public async Task<IActionResult> Sponsors(int Id)
         {
+            if (await teamService.TeamExistAsync(Id) == false)
+            {
+                return NotFound();
+            }
             var model = await sponsorService.SponsorsByTeamAsync(Id);
-
             return View(model);
         }
     }

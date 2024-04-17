@@ -28,7 +28,7 @@ namespace SoftUniFinalProject.Controllers
             var model = await commentService.GetAllCommentsForEventAsync(Id);
             if (model == null)
             {
-                return StatusCode(404);
+                return NotFound();
             }
             return View(model);
         }
