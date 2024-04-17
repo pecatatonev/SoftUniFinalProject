@@ -98,8 +98,7 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
             var user = await userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return StatusCode(404);
-               
+                return NotFound();
             }
 
             await userManager.DeleteAsync(user);
