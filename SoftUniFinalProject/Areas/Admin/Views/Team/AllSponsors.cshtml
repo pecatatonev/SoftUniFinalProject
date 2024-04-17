@@ -26,6 +26,7 @@
                 <p class="card-text">@sponsor.NetWorthInBillion</p>
                 <p class="card-text"><small class="text-muted">@sponsor.YearCreated</small></p>
             </div>
+            <a asp-area="Admin" asp-controller="Team" asp-action="DeleteSponsor" asp-route-id="@sponsor.Id" class="btn btn-danger">Delete Sponsor</a>
         </div>
     }
 </div>

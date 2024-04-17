@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Models.Event;
 using SoftUniFinalProject.Core.Models.Team;
+using SoftUniFinalProject.Core.Services.EventService;
+using SoftUniFinalProject.Infrastructure.Constants;
+using System.Globalization;
 
 namespace SoftUniFinalProject.Areas.Admin.Controllers
 {
@@ -74,6 +78,41 @@ namespace SoftUniFinalProject.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(AllSponsors));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteSponsor(int Id)
+        {
+            if ((await sponsorService.SponsorExistAsync(Id) == false))
+            {
+                return RedirectToAction("AllSponsors", "Team", new { area = "Admin" });
+            }
+
+            var sponsorToDelete = await sponsorService.GetSponsorAsync(Id);
+            var model = new SponsorServiceViewModel()
+            {
+                Id = sponsorToDelete.Id,
+                Name = sponsorToDelete.Name,
+                ImageUrl = sponsorToDelete.ImageUrl,
+                NetWorthInBillion = sponsorToDelete.NetWorthInBillion,
+                YearCreated = sponsorToDelete.YearCreation
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteSponsor(int Id, EventDeleteViewModel model)
+        {
+            if ((await sponsorService.SponsorExistAsync(Id) == false))
+            {
+                return RedirectToAction("AllSponsors", "Team", new { area = "Admin" });
+            }
+
+            await sponsorService.DeleteAsync(model.Id);
+
+            return RedirectToAction("AllSponsors", "Team", new { area = "Admin" });
+        }
+
     }
-    
+
 }

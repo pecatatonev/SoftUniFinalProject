@@ -99,5 +99,32 @@ namespace SoftUniFinalProject.Core.Services.TeamService
 
             return sponsor.Id;
         }
+
+        public async Task<Sponsor> GetSponsorAsync(int sposnorId)
+        {
+            return await repository.GetByIdAsync<Sponsor>(sposnorId);
+        }
+
+        public async Task DeleteAsync(int sponsorId)
+        {
+            var sponsorToDelete = await repository.GetByIdAsync<Sponsor>(sponsorId);
+            var teamSponsors = repository.All<TeamSponsor>(ts => ts.SponsorId == sponsorId);
+            if (sponsorToDelete == null)
+            {
+                throw new NullReferenceException(nameof(sponsorToDelete));
+            }
+            try
+            {
+                repository.DeleteRange(teamSponsors);
+                repository.Delete(sponsorToDelete);
+
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Database failed to save info", ex);
+            }
+
+        }
     }
 }
