@@ -132,7 +132,7 @@ namespace SoftUniFinalProject.UnitTests
         public async Task SponsorsByTeamAsync_ReturnsMappedViewModels()
         {
             // Arrange
-            int teamId = 8; // Assuming team ID to filter sponsors
+            int teamId = 8;
 
             var sponsors = new List<Sponsor>
             {
@@ -239,6 +239,92 @@ namespace SoftUniFinalProject.UnitTests
                 var sponsorViewModel = result.FirstOrDefault(s => s.Id == sponsor.Id && s.Name == sponsor.Name);
                 Assert.IsNotNull(sponsorViewModel);
             }
+        }
+
+        [Test]
+        public async Task GetSponsorAsync_WithValidId_ReturnsSponsor()
+        {
+            // Arrange
+            int sponsorId = 1;
+            var expectedSponsor = new Sponsor { Id = sponsorId, Name = "Test Sponsor" };
+
+            var mockRepository = new Mock<IRepository>();
+            mockRepository.Setup(r => r.GetByIdAsync<Sponsor>(sponsorId))
+                          .ReturnsAsync(expectedSponsor);
+
+            var service = new SponsorService(mockRepository.Object);
+
+            // Act
+            var result = await service.GetSponsorAsync(sponsorId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.That(result.Id, Is.EqualTo(expectedSponsor.Id));
+            Assert.That(result.Name, Is.EqualTo(expectedSponsor.Name));
+        }
+
+        [Test]
+        public async Task GetSponsorAsync_WithInvalidId_ReturnsNull()
+        {
+            // Arrange
+            int sponsorId = 1;
+
+            var mockRepository = new Mock<IRepository>();
+            mockRepository.Setup(r => r.GetByIdAsync<Sponsor>(sponsorId))
+                          .ReturnsAsync((Sponsor)null);
+
+            var service = new SponsorService(mockRepository.Object);
+
+            // Act
+            var result = await service.GetSponsorAsync(sponsorId);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Test]
+        public async Task DeleteAsync_ValidSponsorId_DeletesSponsor()
+        {
+            // Arrange
+            int sponsorId = 1;
+            var sponsorToDelete = new Sponsor { Id = sponsorId, Name = "Test Sponsor" };
+            var teamSponsors = new List<TeamSponsor>(); // Empty list since we don't have any team sponsors in this test
+
+            var mockRepository = new Mock<IRepository>();
+            mockRepository.Setup(r => r.GetByIdAsync<Sponsor>(sponsorId))
+                          .ReturnsAsync(sponsorToDelete);
+            mockRepository.Setup(r => r.All<TeamSponsor>(ts => ts.SponsorId == sponsorId))
+                          .Returns(teamSponsors.AsQueryable());
+
+            var service = new SponsorService(mockRepository.Object);
+
+            // Act
+            await service.DeleteAsync(sponsorId);
+
+            // Assert
+            mockRepository.Verify(r => r.DeleteRange(It.IsAny<IEnumerable<TeamSponsor>>()), Times.Once);
+            mockRepository.Verify(r => r.Delete(sponsorToDelete), Times.Once);
+            mockRepository.Verify(r => r.SaveChangesAsync(), Times.Once);
+        }
+
+        [Test]
+        public async Task DeleteAsync_InvalidSponsorId_ThrowsException()
+        {
+            // Arrange
+            int sponsorId = 1;
+            Sponsor sponsorToDelete = null;
+
+            var mockRepository = new Mock<IRepository>();
+            mockRepository.Setup(r => r.GetByIdAsync<Sponsor>(sponsorId))
+                          .ReturnsAsync(sponsorToDelete);
+
+            var service = new SponsorService(mockRepository.Object);
+
+            // Act & Assert
+            Assert.ThrowsAsync<NullReferenceException>(async () =>await service.DeleteAsync(sponsorId));
+            mockRepository.Verify(r => r.DeleteRange(It.IsAny<IEnumerable<TeamSponsor>>()), Times.Never);
+            mockRepository.Verify(r => r.Delete(It.IsAny<Sponsor>()), Times.Never);
+            mockRepository.Verify(r => r.SaveChangesAsync(), Times.Never);
         }
 
         [TearDown]
