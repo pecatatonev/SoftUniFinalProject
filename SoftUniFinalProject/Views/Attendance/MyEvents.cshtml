@@ -8,7 +8,7 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<div class="text-center row">
+<div style="display:flex; justify-content: space-evenly;" class="text-center row">
     @foreach (var e in Model)
     {
         <div class="card col-4" style="width: 20rem; ">
@@ -27,8 +27,8 @@
             }
             else
             {
-                <form class="input-group-sm btn-style" asp-controller="Attendance" asp-action="Leave" asp-route-id="@e.Id">
-                    <input type="submit" value="Leave Event" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
+                <form class="input-group-sm" asp-controller="Attendance" asp-action="Leave" asp-route-id="@e.Id">
+                    <input type="submit" value="Leave Event" class="fs-6 btn btn-style mb-3 w-100 p-3 fw-bold" />
                 </form>
                 <a asp-controller="Event" asp-action="DetailsGame" asp-route-id="@e.FootballGameId" class="btn btn-style mb-2 w-100 p-3 fw-bold">Details about football game</a>
             }
