@@ -168,6 +168,44 @@ namespace SoftUniFinalProject.UnitTests
             }
         }
 
+            [Test]
+            public async Task TeamExistAsync_TeamExists_ReturnsTrue()
+            {
+                // Arrange
+                int teamId = 101; // Set the ID of an existing team
+
+                var mockRepository = new Mock<IRepository>(); // Create a mock repository
+                mockRepository.Setup(r => r.FirstOrDefaultAsync<Team>(t => t.Id == teamId))
+                              .ReturnsAsync(new Team()); // Setup the mock repository to return a team
+
+                var teamService = new TeamService(mockRepository.Object); // Create an instance of the service
+
+                // Act
+                bool teamExists = await teamService.TeamExistAsync(teamId);
+
+                // Assert
+                Assert.IsTrue(teamExists); // Verify that the method returns true since the team exists
+            }
+
+            [Test]
+            public async Task TeamExistAsync_TeamDoesNotExist_ReturnsFalse()
+            {
+                // Arrange
+                int teamId = 10; // Set the ID of a non-existing team
+
+                var mockRepository = new Mock<IRepository>(); // Create a mock repository
+                mockRepository.Setup(r => r.FirstOrDefaultAsync<Team>(t => t.Id == teamId))
+                              .ReturnsAsync((Team)null); // Setup the mock repository to return null (team does not exist)
+
+                var teamService = new TeamService(mockRepository.Object); // Create an instance of the service
+
+                // Act
+                bool teamExists = await teamService.TeamExistAsync(teamId);
+
+                // Assert
+                Assert.IsFalse(teamExists); // Verify that the method returns false since the team does not exist
+            }
+
         [TearDown]
         public void TearDown()
         {
