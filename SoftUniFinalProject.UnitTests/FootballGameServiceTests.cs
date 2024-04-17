@@ -322,13 +322,13 @@ namespace SoftUniFinalProject.UnitTests
             Assert.That(result.Count(), Is.EqualTo(4));
 
             // Verify that mappings are correct
-            Assert.That(result.ElementAt(2).Id, Is.EqualTo(10));
-            Assert.That(result.ElementAt(2).AwayTeamName, Is.EqualTo("Team A"));
-            Assert.That(result.ElementAt(2).HomeTeamName, Is.EqualTo("Team B"));
+            Assert.That(result.ElementAt(2).Id, Is.EqualTo(11));
+            Assert.That(result.ElementAt(2).AwayTeamName, Is.EqualTo("Team C"));
+            Assert.That(result.ElementAt(2).HomeTeamName, Is.EqualTo("Team D"));
 
-            Assert.That(result.ElementAt(3).Id, Is.EqualTo(11));
-            Assert.That(result.ElementAt(3).AwayTeamName, Is.EqualTo("Team C"));
-            Assert.That(result.ElementAt(3).HomeTeamName, Is.EqualTo("Team D"));
+            Assert.That(result.ElementAt(3).Id, Is.EqualTo(10));
+            Assert.That(result.ElementAt(3).AwayTeamName, Is.EqualTo("Team A"));
+            Assert.That(result.ElementAt(3).HomeTeamName, Is.EqualTo("Team B"));
         }
 
         [Test]
@@ -374,19 +374,19 @@ namespace SoftUniFinalProject.UnitTests
             Assert.That(result.Count(), Is.EqualTo(4));
 
             // Verify that mappings are correct
-            Assert.That(result.ElementAt(2).Id, Is.EqualTo(10));
-            Assert.That(result.ElementAt(2).RefereeName, Is.EqualTo("John Doe"));
-            Assert.That(result.ElementAt(2).PlayingFor, Is.EqualTo("Team A vs Team B"));
-            Assert.That(result.ElementAt(2).StartGame, Is.EqualTo(footballGames[0].StartGame.ToString(DataConstants.DateTimeFormat)));
-            Assert.That(result.ElementAt(2).AwayTeamName, Is.EqualTo("Team A"));
-            Assert.That(result.ElementAt(2).HomeTeamName, Is.EqualTo("Team B"));
+            Assert.That(result.ElementAt(2).Id, Is.EqualTo(20));
+            Assert.That(result.ElementAt(2).RefereeName, Is.EqualTo("Jane Smith"));
+            Assert.That(result.ElementAt(2).PlayingFor, Is.EqualTo("Team C vs Team D"));
+            Assert.That(result.ElementAt(2).StartGame, Is.EqualTo(footballGames[1].StartGame.ToString(DataConstants.DateTimeFormat)));
+            Assert.That(result.ElementAt(2).AwayTeamName, Is.EqualTo("Team C"));
+            Assert.That(result.ElementAt(2).HomeTeamName, Is.EqualTo("Team D"));
 
-            Assert.That(result.ElementAt(3).Id, Is.EqualTo(20));
-            Assert.That(result.ElementAt(3).RefereeName, Is.EqualTo("Jane Smith"));
-            Assert.That(result.ElementAt(3).PlayingFor, Is.EqualTo("Team C vs Team D"));
-            Assert.That(result.ElementAt(3).StartGame, Is.EqualTo(footballGames[1].StartGame.ToString(DataConstants.DateTimeFormat)));
-            Assert.That(result.ElementAt(3).AwayTeamName, Is.EqualTo("Team C"));
-            Assert.That(result.ElementAt(3).HomeTeamName, Is.EqualTo("Team D"));
+            Assert.That(result.ElementAt(3).Id, Is.EqualTo(10));
+            Assert.That(result.ElementAt(3).RefereeName, Is.EqualTo("John Doe")); 
+            Assert.That(result.ElementAt(3).PlayingFor, Is.EqualTo("Team A vs Team B"));
+            Assert.That(result.ElementAt(3).StartGame, Is.EqualTo(footballGames[0].StartGame.ToString(DataConstants.DateTimeFormat)));
+            Assert.That(result.ElementAt(3).AwayTeamName, Is.EqualTo("Team A"));
+            Assert.That(result.ElementAt(3).HomeTeamName, Is.EqualTo("Team B"));
         }
 
         [Test]
