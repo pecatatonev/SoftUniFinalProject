@@ -22,14 +22,18 @@ namespace SoftUniFinalProject.Core.Services.CommentService
         private readonly IRepository repository;
         private readonly ILogger<CommentService> logger;
 
-        public CommentService(IRepository _repository, ILogger<CommentService> _logger)
+        public CommentService(IRepository _repository)
         {
             repository = _repository;
-            logger = _logger;
         }
 
         public async Task CreateCommentAsync(CommentToCreateViewModel commentModel,string userId, int eventId)
         {
+            if (await repository.AlreadyExistAsync<Infrastructure.Data.Models.Comment>(e => e.Text == commentModel.Text && e.UserId == userId && e.EventId == eventId))
+            {
+                throw new ApplicationException("Comment already exists");
+            }
+
             Infrastructure.Data.Models.Comment comment = new Infrastructure.Data.Models.Comment()
             {
                 EventId = eventId,
@@ -46,7 +50,6 @@ namespace SoftUniFinalProject.Core.Services.CommentService
             }
             catch (Exception ex)
             {
-                logger.LogError(nameof(CreateCommentAsync), ex);
                 throw new ApplicationException("Database failed to save info", ex);
             }
         }
