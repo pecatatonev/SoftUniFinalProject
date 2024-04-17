@@ -1,25 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SoftUniFinalProject.Core.Contracts.Team;
-using SoftUniFinalProject.Core.Services.TeamService;
-using SoftUniFinalProject.Infrastructure.Data.Common;
-using SoftUniFinalProject.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
-using SoftUniFinalProject.Infrastructure.Data.Models;
-using SoftUniFinalProject.Core.Contracts.Comment;
-using SoftUniFinalProject.Core.Services.CommentService;
-using SoftUniFinalProject.Core.Models.Event;
-using SoftUniFinalProject.Core.Services.EventService;
-using SoftUniFinalProject.Core.Models.Comment;
-using SoftUniFinalProject.Core.Contracts.Event;
 using Moq;
-using System.Linq.Expressions;
 using NUnit.Framework.Internal;
-using static SoftUniFinalProject.Infrastructure.Constants.DataConstants;
+using SoftUniFinalProject.Core.Contracts.Comment;
+using SoftUniFinalProject.Core.Models.Comment;
+using SoftUniFinalProject.Core.Services.CommentService;
+using SoftUniFinalProject.Infrastructure.Data;
+using SoftUniFinalProject.Infrastructure.Data.Common;
+using System.Linq.Expressions;
 using Comment = SoftUniFinalProject.Infrastructure.Data.Models.Comment;
 
 namespace SoftUniFinalProject.UnitTests

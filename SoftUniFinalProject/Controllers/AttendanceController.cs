@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Attendance;
-using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Extensions;
 
 namespace SoftUniFinalProject.Controllers

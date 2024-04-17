@@ -1,11 +1,5 @@
 ﻿using SoftUniFinalProject.Core.Contracts.Admin.Identity;
-using SoftUniFinalProject.Core.Models.Admin;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftUniFinalProject.Core.Services.Admin.UserService
 {

@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Models.Event;
 using SoftUniFinalProject.Core.Models.Team;
-using SoftUniFinalProject.Core.Services.EventService;
-using SoftUniFinalProject.Infrastructure.Constants;
-using System.Globalization;
 
 namespace SoftUniFinalProject.Areas.Admin.Controllers
 {

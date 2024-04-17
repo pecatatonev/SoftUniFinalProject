@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Net;
 using static SoftUniFinalProject.Infrastructure.Constants.DataConstants.Event;
 
 namespace SoftUniFinalProject.Infrastructure.Data.Models

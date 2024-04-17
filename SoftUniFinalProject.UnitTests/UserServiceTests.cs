@@ -1,14 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SoftUniFinalProject.Core.Services.AttendanceService;
-using SoftUniFinalProject.Infrastructure.Data.Common;
-using SoftUniFinalProject.Infrastructure.Data.Models;
-using SoftUniFinalProject.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SoftUniFinalProject.Core.Services.Admin.UserService;
+﻿using SoftUniFinalProject.Core.Services.Admin.UserService;
 
 namespace SoftUniFinalProject.UnitTests
 {

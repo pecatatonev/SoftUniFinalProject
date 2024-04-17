@@ -1,16 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using SoftUniFinalProject.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using SoftUniFinalProject.Infrastructure.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SoftUniFinalProject.Infrastructure.Constants;
 using static SoftUniFinalProject.Infrastructure.Constants.DataConstants.Event;
-using SoftUniFinalProject.Core.Models.Team;
 
 namespace SoftUniFinalProject.Core.Models.Event
 {

@@ -2,10 +2,6 @@
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Contracts.Home;
 using SoftUniFinalProject.Core.Models.Home;
-using SoftUniFinalProject.Models;
-using System.Diagnostics;
-using System.Net.Mail;
-using System.Net;
 
 namespace SoftUniFinalProject.Controllers
 {

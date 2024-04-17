@@ -1,5 +1,4 @@
 ﻿using SoftUniFinalProject.Core.Models.Event;
-using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Enumerations;
 
 namespace SoftUniFinalProject.Core.Contracts.Event

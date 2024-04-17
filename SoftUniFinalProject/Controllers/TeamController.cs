@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Team;
-using SoftUniFinalProject.Core.Models.Event;
 using SoftUniFinalProject.Core.Models.Team;
-using SoftUniFinalProject.Core.Services.EventService;
-using System.Net.WebSockets;
-using System.Transactions;
 
 namespace SoftUniFinalProject.Controllers
 {

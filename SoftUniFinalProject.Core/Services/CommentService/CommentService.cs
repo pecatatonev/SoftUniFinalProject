@@ -2,17 +2,8 @@
 using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Comment;
 using SoftUniFinalProject.Core.Models.Comment;
-using SoftUniFinalProject.Core.Models.Event;
-using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
-using SoftUniFinalProject.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using static SoftUniFinalProject.Infrastructure.Constants.DataConstants;
 
 namespace SoftUniFinalProject.Core.Services.CommentService

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Models.Event;

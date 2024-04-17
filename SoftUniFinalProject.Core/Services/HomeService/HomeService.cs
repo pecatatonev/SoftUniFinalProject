@@ -1,14 +1,7 @@
-﻿using SoftUniFinalProject.Core.Contracts.Home;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
+﻿using Microsoft.Extensions.Configuration;
+using SoftUniFinalProject.Core.Contracts.Home;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Configuration;
-using System.Collections;
+using System.Net.Mail;
 
 namespace SoftUniFinalProject.Core.Services.HomeService
 {

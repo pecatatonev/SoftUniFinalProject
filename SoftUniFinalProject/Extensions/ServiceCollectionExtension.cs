@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Admin.Identity;
 using SoftUniFinalProject.Core.Contracts.Attendance;

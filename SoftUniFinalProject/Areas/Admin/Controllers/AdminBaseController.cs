@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using static SoftUniFinalProject.Core.Constants.RoleConstants;
 
 namespace SoftUniFinalProject.Areas.Admin.Controllers

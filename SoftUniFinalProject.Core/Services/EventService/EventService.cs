@@ -1,21 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Models.Event;
-using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.Models;
 using SoftUniFinalProject.Infrastructure.Enumerations;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftUniFinalProject.Core.Services.EventService
 {

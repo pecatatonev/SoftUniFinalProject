@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using SoftUniFinalProject.Infrastructure.Data.Models;
 using SoftUniFinalProject.Infrastructure.Data.SeedDb;
-using System.Reflection.Emit;
-using System.Security.Principal;
 
 namespace SoftUniFinalProject.Infrastructure.Data
 {

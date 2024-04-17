@@ -1,12 +1,5 @@
-﻿using SoftUniFinalProject.Core.Models.Event;
-using SoftUniFinalProject.Infrastructure.Enumerations;
-using System;
-using System.Collections.Generic;
+﻿using SoftUniFinalProject.Infrastructure.Enumerations;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace SoftUniFinalProject.Core.Models.Team
 {

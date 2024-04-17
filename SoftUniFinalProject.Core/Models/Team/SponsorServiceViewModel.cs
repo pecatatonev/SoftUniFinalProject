@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using static SoftUniFinalProject.Infrastructure.Constants.DataConstants.Sponsor;
-
-namespace SoftUniFinalProject.Core.Models.Team
+﻿namespace SoftUniFinalProject.Core.Models.Team
 {
     public class SponsorServiceViewModel
     {

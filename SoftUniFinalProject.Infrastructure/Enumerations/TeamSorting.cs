@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SoftUniFinalProject.Infrastructure.Enumerations
+﻿namespace SoftUniFinalProject.Infrastructure.Enumerations
 {
     public enum TeamSorting
     {

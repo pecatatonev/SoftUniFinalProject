@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Hosting;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using static SoftUniFinalProject.Core.Constants.RoleConstants;
 

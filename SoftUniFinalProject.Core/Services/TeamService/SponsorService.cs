@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Team;
 using SoftUniFinalProject.Core.Models.Team;
-using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.Models;
 

@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Comment;
-using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Models.Comment;
-using SoftUniFinalProject.Core.Models.Event;
-using SoftUniFinalProject.Core.Services.EventService;
 using SoftUniFinalProject.Extensions;
 using SoftUniFinalProject.Infrastructure.Constants;
 using System.Globalization;

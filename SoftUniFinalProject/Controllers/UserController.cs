@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Build.Execution;
-using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Admin.Identity;
-using SoftUniFinalProject.Core.Models.Admin;
 using SoftUniFinalProject.Core.Models.Identity;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
-using System.Runtime.CompilerServices;
 using static SoftUniFinalProject.Core.Constants.RoleConstants;
 
 namespace SoftUniFinalProject.Controllers
@@ -19,6 +15,7 @@ namespace SoftUniFinalProject.Controllers
         private readonly UserManager<ApplicationUser> userManager;
 
         private readonly SignInManager<ApplicationUser> signInManager;
+
         private readonly IUserService userService;
 
         public UserController(

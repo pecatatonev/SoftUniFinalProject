@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using System.ComponentModel.DataAnnotations;

@@ -1,21 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SoftUniFinalProject.Core.Contracts.Event;
-using SoftUniFinalProject.Core.Services.EventService;
-using SoftUniFinalProject.Infrastructure.Data.Common;
-using SoftUniFinalProject.Infrastructure.Data;
-using SoftUniFinalProject.Infrastructure.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Moq;
 using SoftUniFinalProject.Core.Contracts.Team;
+using SoftUniFinalProject.Core.Models.Team;
+using SoftUniFinalProject.Core.Services.TeamService;
+using SoftUniFinalProject.Infrastructure.Data;
+using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
 using SoftUniFinalProject.Infrastructure.Data.Models;
-using SoftUniFinalProject.Core.Services.TeamService;
-using Moq;
-using SoftUniFinalProject.Core.Models.Team;
-using SoftUniFinalProject.Core.Models.Event;
+using SoftUniFinalProject.Infrastructure.Enumerations;
 
 namespace SoftUniFinalProject.UnitTests
 {

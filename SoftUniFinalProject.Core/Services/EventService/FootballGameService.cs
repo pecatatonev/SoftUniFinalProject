@@ -1,17 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SoftUniFinalProject.Core.Contracts.Event;
 using SoftUniFinalProject.Core.Models.Event;
-using SoftUniFinalProject.Core.Models.Team;
 using SoftUniFinalProject.Infrastructure.Constants;
 using SoftUniFinalProject.Infrastructure.Data.Common;
 using SoftUniFinalProject.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftUniFinalProject.Core.Services.EventService
 {

@@ -1,13 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using SoftUniFinalProject.Infrastructure.Constants;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using SoftUniFinalProject.Infrastructure.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static SoftUniFinalProject.Infrastructure.Constants.DataConstants.Comment;
 
 namespace SoftUniFinalProject.Core.Models.Comment

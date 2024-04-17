@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoftUniFinalProject.Core.Contracts.Admin.Identity;
 using SoftUniFinalProject.Core.Models.Admin;
-using SoftUniFinalProject.Core.Services.Admin.UserService;
 using SoftUniFinalProject.Infrastructure.Data.IdentityModels;
-using static SoftUniFinalProject.Core.Constants.RoleConstants;
 
 namespace SoftUniFinalProject.Areas.Admin.Controllers
 {
