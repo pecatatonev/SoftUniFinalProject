@@ -120,7 +120,7 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     Nickname = t.Nickname,
                     ManagerName = t.ManagerName,
                 })
-                .FirstAsync();
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<AddTeamToFootballGameViewModel>> GetAllTeamsAsync()
@@ -143,6 +143,16 @@ namespace SoftUniFinalProject.Core.Services.TeamService
                     Name = t.Name,
                 })
                 .ToListAsync();
+        }
+
+        public async Task<bool> TeamExistAsync(int teamId)
+        {
+            if (await repository.FirstOrDefaultAsync<Team>(t => t.Id == teamId) == null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
